@@ -1,0 +1,22 @@
+{
+  "name": "generatepdf",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "html-pdf": "^3.0.1",
+    "html2canvas": "^1.4.1",
+    "jsdom": "^24.1.0",
+    "jspdf": "^2.5.1",
+    "nodemon": "^3.1.3"
+  },
+  "devDependencies": {}
+}

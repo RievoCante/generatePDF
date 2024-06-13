@@ -1,0 +1,122 @@
+/* Apply A4 paper size and margin */
+@page {
+  size: A4;
+  margin: 20mm;
+}
+
+#pdfContent {
+  width: 210mm;
+  min-height: 297mm;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Invoice styles */
+#invoice {
+  width: 100%;
+  margin: auto;
+  padding: 10mm;
+  box-sizing: border-box;
+}
+
+.section {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.first-section {
+  margin-left: 15px;
+}
+
+.first-section,
+.profile,
+.left,
+.right {
+  width: 100%;
+}
+
+.profile {
+  width: 15%;
+}
+
+.left,
+.right {
+  width: 48%;
+  margin-right: 20px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table th,
+table td {
+  border: 1px solid #000;
+  padding: 8px;
+  text-align: left;
+  font-size: 10px;
+}
+
+table th {
+  background-color: #f2f2f2;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #000;
+  margin: 20px 0;
+}
+
+/* Signature section styles */
+table.signature-table td {
+  height: 100px;
+  vertical-align: top;
+  text-align: center;
+}
+
+.signature-table td span {
+  display: block;
+  margin-top: 60px;
+  border-top: 1px solid #000;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ensure everything fits into A4 size */
+html,
+body {
+  height: 297mm;
+  width: 210mm;
+  margin: 0 auto;
+  padding: 0;
+}
+
+@media print {
+  body {
+    width: 210mm;
+    height: 297mm;
+  }
+
+  .section {
+    page-break-inside: avoid;
+  }
+}
+
+.answer {
+  opacity: 0.7;
+}
