@@ -4,25 +4,43 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/style.css" rel="stylesheet" />
+    <script src="script.js"></script>
     <title>Quotation</title>
   </head>
   <body>
-    <h1>ใบเสนอราคา / Quotation</h1>
     <button id="button">Generate PDF</button>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const button = document.getElementById('button');
-        button.addEventListener('click', () => {
-          const pdfContent = document.getElementById('pdfContent');
-          html2pdf().from(pdfContent).save('quotation.pdf');
-        });
-      });
-    </script>
-
     <div id="pdfContent">
+      <% const itemCount = data.documentItems.length; const additionalPages =
+      calculateAdditionalPages(itemCount); for (let i =0; i <= additionalPages;
+      i++) { %>
       <div id="invoice">
-        <!-- First Section -->
-        <div class="section">
+        <h1 id="docName">ใบเสนอราคา<br />Quotation</h1>
+        <div class="topRight">
+          <table id="docInfo">
+            <tr>
+              <td>เลขที่/No.</td>
+              <td><%= data.taxIdent %></td>
+            </tr>
+            <tr>
+              <td>วันที่/Date.</td>
+              <td><%= data.issuedDate %></td>
+            </tr>
+            <tr>
+              <td>วันหมดอายุ/</td>
+              <td><%= data.dueDate %></td>
+            </tr>
+            <tr>
+              <td>Expired Date</td>
+            </tr>
+            <tr>
+              <td>อ้างอิง/Ref.</td>
+              <td><%= data.contactTaxId %></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="header">
+          <!-- First Section -->
           <div class="profile">
             <img
               src="profile-picture.jpg"
@@ -31,244 +49,246 @@
               height="100"
             />
           </div>
-          <div class="first-section">
-            <p>
-              ชื่อบริษัท / Company Name:
-              <span class="answer" id="companyName"
-                ><%= data.contactName %></span
-              >
-            </p>
-            <p>
-              สาขา / Branch:
-              <span class="answer" id="branch"><%= data.contactBranch %></span>
-            </p>
-            <p>
-              เลขประจำตัวผู้เสียภาษี / Tax ID:
-              <span class="answer" id="taxId"><%= data.contactTaxId %></span>
-            </p>
-            <p>
-              อีเมล / E-mail:
-              <span class="answer" id="email"><%= data.contactEmail %></span>
-            </p>
-            <p>
-              เบอร์โทรศัพท์ / Tel:
-              <span class="answer" id="tel"><%= data.contactMobile %></span>
-            </p>
-            <p>
-              ที่อยู่ / Address:
-              <span class="answer" id="companyAddress"
-                ><%= data.contactAddress %></span
-              >
-            </p>
-          </div>
         </div>
+
+        <div class="first-section">
+          <p>
+            ชื่อบริษัท/Company Name:
+            <span class="answer" id="companyName"><%= data.contactName %></span>
+          </p>
+          <p>
+            ที่อยู่/Address:
+            <span class="answer" id="companyAddress"
+              ><%= data.contactAddress %></span
+            >
+          </p>
+          <p>
+            เลขผู้เสียภาษี/Tax ID:
+            <span class="answer" id="taxId"><%= data.contactTaxId %></span>
+          </p>
+
+          <!-- <p>
+              สาขา/Branch:
+              <span class="answer" id="branch"><%= data.contactBranch %></span>
+            </p> -->
+
+          <p>
+            เบอร์โทรศัพท์/Tel:
+            <span class="answer" id="tel"><%= data.contactMobile %></span>
+          </p>
+          <p>
+            อีเมล/E-mail:
+            <span class="answer" id="email"><%= data.contactEmail %></span>
+          </p>
+        </div>
+
         <hr />
 
         <!-- Second Section -->
-        <div class="section">
+        <div class="second-section">
           <div class="left">
             <p>
-              ลูกค้า / Customer:
+              ลูกค้า/Customer:
               <span class="answer" id="customerName"
                 ><%= data.createdPerson %></span
               >
             </p>
             <p>
-              ที่อยู่ / Address:
+              ที่อยู่/Address:
               <span class="answer" id="customerAddress"
                 ><%= data.companyAddress %></span
               >
             </p>
             <p>
-              เลขผู้เสียภาษี / Tax ID:
-              <span class="answer" id="customerTaxId"
-                ><%= data.contactTaxId %></span
-              >
-            </p>
-            <p>
-              เลขที่ / No.:
-              <span class="answer" id="no"><%= data.vatRegister %></span>
-            </p>
-            <p>
-              อ้างอิง / Ref.:
-              <span class="answer" id="ref"><%= data.createdBy %></span>
-            </p>
-          </div>
-          <div class="right">
-            <p>
-              สาขา / Branch:
-              <span class="answer" id="customerBranch"
-                ><%= data.branchName %></span
-              >
-            </p>
-            <p>
-              วันที่ / Issue:
-              <span class="answer" id="issue"><%= data.issuedDate %></span>
-            </p>
-            <p>
-              ผู้ติดต่อ / Attention:
+              ผู้ติดต่อ/Attention:
               <span class="answer" id="attention"
                 ><%= data.createdPerson %></span
               >
             </p>
-            <p>
-              เบอร์โทรศัพท์ / Tel.:
-              <span class="answer" id="customerTel"><%= data.telephone %></span>
-            </p>
-            <p>
-              เงื่อนไขการชำระเงิน / Payment condition:
-              <span class="answer" id="paymentCondition"
-                ><%= data.paymentCondition %></span
-              >
-            </p>
-          </div>
-        </div>
-        <hr />
-        <!-- Third Section -->
-        <div class="section">
-          <table border="1" width="100%">
-            <thead>
-              <tr>
-                <!-- ต้องแก้!! -->
-                <th>เลขที่<br />No.</th>
-                <th>รหัสสินค้า<br />Product No.</th>
-                <th>สินค้า/คำอธิบาย<br />Product/Description</th>
-                <th>จำนวน<br />Quantity</th>
-                <th>หน่วย<br />Unit</th>
-                <th>ราคาต่อหน่วย(บาท)<br />Unit Price(Baht)</th>
-                <th>มูลค่าก่อนภาษี<br />Pre-tax amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="answer" id="number">[1]</td>
-                <td class="answer" id="productNo">[Product No.]</td>
-                <td class="answer" id="productDescription">
-                  [Product/Description]
-                </td>
-                <td class="answer" id="quantity">[Quantity]</td>
-                <td class="answer" id="unit">[Unit]</td>
-                <td class="answer" id="unitPrice">[Unit Price]</td>
-                <td class="answer" id="preTaxAmount">[Pre-tax Amount]</td>
-              </tr>
-              <tr>
-                <td class="answer" id="number">[1]</td>
-                <td class="answer" id="productNo">[Product No.]</td>
-                <td class="answer" id="productDescription">
-                  [Product/Description]
-                </td>
-                <td class="answer" id="quantity">[Quantity]</td>
-                <td class="answer" id="unit">[Unit]</td>
-                <td class="answer" id="unitPrice">[Unit Price]</td>
-                <td class="answer" id="preTaxAmount">[Pre-tax Amount]</td>
-              </tr>
-              <tr>
-                <td class="answer" id="number">[1]</td>
-                <td class="answer" id="productNo">[Product No.]</td>
-                <td class="answer" id="productDescription">
-                  [Product/Description]
-                </td>
-                <td class="answer" id="quantity">[Quantity]</td>
-                <td class="answer" id="unit">[Unit]</td>
-                <td class="answer" id="unitPrice">[Unit Price]</td>
-                <td class="answer" id="preTaxAmount">[Pre-tax Amount]</td>
-              </tr>
-              <tr>
-                <td class="answer" id="number">[1]</td>
-                <td class="answer" id="productNo">[Product No.]</td>
-                <td class="answer" id="productDescription">
-                  [Product/Description]
-                </td>
-                <td class="answer" id="quantity">[Quantity]</td>
-                <td class="answer" id="unit">[Unit]</td>
-                <td class="answer" id="unitPrice">[Unit Price]</td>
-                <td class="answer" id="preTaxAmount">[Pre-tax Amount]</td>
-              </tr>
-              <tr>
-                <td class="answer" id="number">[1]</td>
-                <td class="answer" id="productNo">[Product No.]</td>
-                <td class="answer" id="productDescription">
-                  [Product/Description]
-                </td>
-                <td class="answer" id="quantity">[Quantity]</td>
-                <td class="answer" id="unit">[Unit]</td>
-                <td class="answer" id="unitPrice">[Unit Price]</td>
-                <td class="answer" id="preTaxAmount">[Pre-tax Amount]</td>
-              </tr>
-
-              <!-- Repeat rows as needed -->
-            </tbody>
-          </table>
-        </div>
-        <hr />
-
-        <!-- Fourth Section -->
-        <div class="section">
-          <div class="left">
-            <p>
-              หมายเหตุ / Remark:
-              <span class="answer" id="remark"><%= data.remark %></span>
-            </p>
           </div>
           <div class="right">
             <p>
-              ส่วนลด / Discount:
-              <span class="answer" id="discount"
-                ><%= data.discountAmount %></span
-              >
+              เลขผู้เสียภาษี/Tax ID:
+              <span class="answer"><%= data.contactTaxId %></span>
             </p>
             <p>
-              ราคาสุทธิสินค้าที่เสียภาษี / Sub Total:
-              <span class="answer" id="subTotal"
-                ><%= data.documentHeader %></span
-              >
+              เบอร์โทรศัพท์/Tel. :
+              <span class="answer"><%= data.telephone %></span>
             </p>
             <p>
-              ภาษีมูลค่าเพิ่ม / Vat:
-              <span class="answer" id="vat"><%= data.documentHeader %></span>
-            </p>
-            <p>
-              ราคารวมก่อนหัก ณ ที่จ่าย / Total:
-              <span class="answer" id="total"><%= data.documentHeader %></span>
-            </p>
-            <p>
-              หัก ณ ที่จ่าย / Withholding Tax:
-              <span class="answer" id="withholdingTax"
-                ><%= data.documentHeader %></span
-              >
-            </p>
-            <p>
-              จำนวนเงินรวมทั้งสิ้น / Grand Total:
-              <span class="answer" id="grandTotal"
-                ><%= data.documentHeader %></span
-              >
+              E-mail:
+              <span class="answer"><%= data.email %></span>
             </p>
           </div>
         </div>
-        <hr />
 
-        <!-- Fifth Section -->
+        <!-- Third Section -->
         <div class="section">
-          <table border="1" width="100%">
-            <tr>
-              <td>
-                สร้างโดย<br />Created by<br /><br /><br /><br />(...............................................)
-                <br />วันที่ / Date: [Date]
-              </td>
-              <td>
-                อนุมัติโดย<br />Approved by<br /><br /><br /><br />(...............................................)
-                <br />วันที่ / Date: [Date]
-              </td>
-              <td>ตราประทับบริษัท</td>
-              <td>ยอมรับใบเสนอราคา</td>
-              <td>
-                ยอมรับใบเสนอราคา<br />Accepted by<br /><br /><br /><br />(...............................................)
-                <br />วันที่ / Date: [Date]
-              </td>
-            </tr>
+          <table id="itemTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>รหัส<br />ID No.</th>
+                <th>รายการสินค้า<br />Product</th>
+                <th>จำนวน<br />Quantity</th>
+                <th>ราคาต่อหน่วย<br />Unit Price</th>
+                <th>ส่วนลด<br />Discount</th>
+                <th>ภาษี<br />VAT</th>
+                <th>มูลค่าก่อนภาษี<br />Pre-Tax Amount</th>
+              </tr>
+            </thead>
+
+            <!-- 1 to 10 items -> show 10 rows on first page -->
+            <!-- 11 to 20 items -> show n rows on first page -> other sections to new page-->
+            <!-- 21 to 30 items -> show 20 rows on first page/ 10 additional rows on second page
+               -> the rest of sections on second page-->
+            <!-- 31 to 40 items -> show 20 rows on first page/ n-20 additional rows on second page
+               -> the rest of sections on third page-->
+
+            <% const start = i * 20; const end = start + 20; const items =
+            data.documentItems.slice(start, end); items.forEach(function(item,
+            index) { %>
+            <tbody>
+              <tr>
+                <td class="answer" style="width: 4%; text-align: center">
+                  <%= start + index + 1 %>
+                </td>
+                <td class="answer" style="width: 12%; text-align: left">
+                  <%= item.productCode %>
+                </td>
+                <td class="answer" style="width: 36.5%; text-align: left">
+                  <%= item.productName %><br /><%= item.productDescription %>
+                </td>
+                <td class="answer" style="width: 7%; text-align: right">
+                  <%= item.quantity %>
+                </td>
+                <td class="answer" style="width: 11.5%; text-align: right">
+                  <%= item.unitPrice %>
+                </td>
+                <td class="answer" style="width: 9%; text-align: right">
+                  <%= item.discount %>
+                </td>
+                <td class="answer" style="width: 6%; text-align: right">
+                  <%= item.selected_vat %>
+                </td>
+                <td class="answer" style="width: 14%; text-align: right">
+                  <%= item.totalPriceBeforeTax %>
+                </td>
+              </tr>
+            </tbody>
+            <% }); %>
           </table>
         </div>
+
+        <!--------------------------------- หมายเหตุ / Remark ------------------------------------------>
+
+        <div id="remark" class="flex">
+          <div class="c1">
+            <p style="font-size: 13px; padding: 3px; font-weight: bold">
+              หมายเหตุ / Remark:
+            </p>
+            <!-- (45 ตัวอักษร*10 บรรทัด) -->
+            <p>1. &emsp;[PLACEHOLDER]</p>
+            <p>2. &emsp;[PLACEHOLDER]</p>
+            <p>3. &emsp;[PLACEHOLDER]</p>
+            <p>4. &emsp;[PLACEHOLDER]</p>
+            <p>5. &emsp;[PLACEHOLDER]</p>
+            <p>6. &emsp;[PLACEHOLDER]</p>
+            <p>7. &emsp;[PLACEHOLDER]</p>
+            <p>8. &emsp;[PLACEHOLDER]</p>
+            <p>9. &emsp;[PLACEHOLDER]</p>
+            <p>10.&ensp;&nbsp;[PLACEHOLDER]</p>
+          </div>
+
+          <div class="c2">
+            <p style="padding-top: 3px">ส่วนลด / Discount</p>
+            <p>มูลค่ารวมก่อนเสียภาษี /<br />Pre-Tax Amount</p>
+            <p>ภาษีมูลค่าเพิ่ม / VAT</p>
+            <p>จำนวนเงินรวมทั้งสิ้น / Total</p>
+            <p>หัก ณ ที่จ่าย / Withholding Tax</p>
+            <p>จำนวนเงินสุทธิ / Grand Total</p>
+          </div>
+
+          <div class="c3">
+            <p style="padding-top: 3px">[PLACEHOLDER]</p>
+            <p>[PLACEHOLDER]</p>
+            <p>&nbsp;</p>
+            <p>[PLACEHOLDER]</p>
+            <p>[PLACEHOLDER]</p>
+            <p>[PLACEHOLDER]</p>
+            <p>[PLACEHOLDER]</p>
+          </div>
+        </div>
+        <p id="total">- จำนวนเงินสุทธิ [PLACEHOLDER] -&emsp;</p>
+
+        <br />
+        <hr />
+        <!-- -------------------------------------------------------------------------------- -->
+        <!---------------------- ช่องทางการชำระเงิน / Payment ------------------------>
+        <div class="flex">
+          <!-- ช่องทางการชำระเงิน -->
+          <div style="width: 50%">
+            <p id="payment">ช่องทางการชำระเงิน / Payment</p>
+            <table id="paymentTable">
+              <thead>
+                <tr>
+                  <th>ช่องทางการชำระเงิน</th>
+                  <th>ชื่อการชำระเงิน</th>
+                  <th>รายละเอียด</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>[PLACEHOLDER]</td>
+                  <td>[PLACEHOLDER]</td>
+                  <td>[PLACEHOLDER]</td>
+                </tr>
+                <tr>
+                  <td>[PLACEHOLDER]</td>
+                  <td>[PLACEHOLDER]</td>
+                  <td>[PLACEHOLDER]</td>
+                </tr>
+                <tr>
+                  <td>[PLACEHOLDER]</td>
+                  <td>[PLACEHOLDER]</td>
+                  <td>[PLACEHOLDER]</td>
+                </tr>
+                <tr>
+                  <td>[PLACEHOLDER]</td>
+                  <td>[PLACEHOLDER]</td>
+                  <td>[PLACEHOLDER]</td>
+                </tr>
+                <tr>
+                  <td>[PLACEHOLDER]</td>
+                  <td>[PLACEHOLDER]</td>
+                  <td>[PLACEHOLDER]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- อนุมัติโดย -->
+          <div style="width: 25%; text-align: center">
+            <p>
+              อนุมัติโดย / Approved by<br /><br /><br /><br /><br /><br /><br /><br /><br />
+            </p>
+            <p style="opacity: 0.3">___________________________<br /><br /></p>
+            <p>(__________________________)<br /><br /></p>
+            <p>วันที่ / Date _________________</p>
+          </div>
+
+          <!-- ยอมรับใบเสนอราคา -->
+          <div style="width: 25%; text-align: center">
+            <p>
+              ยอมรับใบเสนอราคา / Accepted by<br /><br /><br /><br /><br /><br /><br /><br /><br />
+            </p>
+            <p style="opacity: 0.3">___________________________<br /><br /></p>
+            <p>(__________________________)<br /><br /></p>
+            <p>วันที่ / Date _________________</p>
+          </div>
+        </div>
       </div>
+      <% }; %>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
