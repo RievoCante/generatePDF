@@ -1,5 +1,15 @@
 {
+  "printWidth": 120,
   "singleQuote": true,
-  "arrowParens": "avoid",
-  "bodyLength": 120
+  "overrides": [
+    {
+      "files": "*.ejs",
+      "options": {
+        "parser": "html",
+        "printWidth": 100,
+        "singleQuote": false,
+        "embeddedLanguageFormatting": "auto"
+      }
+    }
+  ]
 }

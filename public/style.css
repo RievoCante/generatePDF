@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Noto Sans Thai', sans-serif;
 }
 
 h1 {
@@ -21,6 +23,18 @@ p {
   transform: translate(-50%, -50%);
   padding-top: 15mm;
   z-index: -1;
+}
+
+#pageNumber {
+  position: absolute;
+  top: 0;
+  right: 0mm;
+  padding-top: 1mm;
+  z-index: -1;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 4mm;
+  margin-right: 4mm;
 }
 
 #pdfContent {
@@ -56,8 +70,8 @@ p {
 
 #paymentTable th {
   border: 2px solid white;
-  padding-top: 1.75mm;
-  padding-bottom: 1.75mm;
+  padding-top: 1.2mm;
+  padding-bottom: 1.2mm;
 }
 
 #paymentTable td {
@@ -65,13 +79,8 @@ p {
   text-align: center;
   /* background-color: #d0d4ec; */
   background-color: #f0ecf4;
-  padding-top: 1.75mm;
-  padding-bottom: 1.75mm;
-}
-
-#itemTable td {
-  padding: 1mm;
-  background-color: #f0ecf4;
+  padding-top: 1.2mm;
+  padding-bottom: 1.2mm;
 }
 
 .section {
@@ -89,23 +98,26 @@ p {
   display: flex;
 }
 
-.header {
-  display: flex;
-}
-
 .flex {
   display: flex;
 }
 
-.profile,
 .left,
 .right {
   width: 100%;
 }
 
-.profile {
+#companyLogo {
   width: 15%;
   display: flex;
+}
+
+#userSignature {
+  margin-top: 4mm;
+  margin-bottom: 0mm;
+  width: auto;
+  height: 15mm;
+  display: fixed;
 }
 
 .c1 {
@@ -160,6 +172,16 @@ thead th {
   text-align: center;
 }
 
+#itemTable td {
+  padding-left: 1.5mm;
+  padding-right: 1.5mm;
+  padding-top: 0.4mm;
+  padding-bottom: 0.4mm;
+  background-color: #f0ecf4;
+  /* NOTE: experimenting */
+  /* word-wrap: unset; */
+}
+
 /* ------------------------------------*/
 
 #total {
@@ -170,6 +192,7 @@ thead th {
   border-bottom: 1px solid #000;
   border-right: 1px solid #000;
   margin: 0;
+  margin-bottom: 3mm;
   padding-top: 1.5mm;
   padding-bottom: 1.5mm;
   font-weight: bold;
@@ -193,6 +216,7 @@ body {
   padding: 0;
 }
 
+/* NOTE: if not use, delete. */
 .answer {
   opacity: 1;
 }
