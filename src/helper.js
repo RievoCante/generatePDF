@@ -20,10 +20,15 @@ function formatTwoDigits(number) {
   return `${number.toFixed(2)}`;
 }
 
+function insertBrEveryTwoThaiWords(text) {
+  return text.replace(/([ก-๛]+?)([\s|$])/g, '$1<br />').replace(/<br \/>$/, '');
+}
+
 module.exports = {
   formatDateToDDMMYYHHMMSS,
   formatBuddhistDate,
   formatDate,
   convertToPercent,
   formatTwoDigits,
+  insertBrEveryTwoThaiWords,
 };

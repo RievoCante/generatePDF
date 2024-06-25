@@ -6,7 +6,8 @@ const companyData = {
   contactName: 'บริษัท ของขายดี จำกัด',
   branchId: '900b54ae-010e-4f9b-a0ee-41dfa1e95fd5',
   contactPerson: 'คุณใหญ่ ขายดี',
-  contactAddress: '317 อาคารกมลสุโกศล ชั้น 9 ห้อง 9 บี แขวงสีลม เขตบางรัก กรุงเทพมหานคร 10500 ',
+  contactAddress:
+    'อาคารแชปเตอร์วัน โมเดิร์นดัชต์ คอนโดมิเนียม อาคารบี ชั้น1 เลขที่69/1866 ซอยราษฎร์บูรณะ33 ถนนราษฎร์บูรณะ แขวงราษฎร์บูรณะ เขตราษฎร์บูรณะ กรุงเทพมหานคร 10140',
   contactMobile: '',
   contactEmail: 'kaidee@gmail.com',
   contactTaxId: '2024012900003',
@@ -20,7 +21,8 @@ const companyData = {
   selectedVatPercent: 7,
   vatAmount: 535,
   grandTotal: 22310.25,
-  remark: '',
+  remark:
+    'หมายเหตุประกอบงบการเงิน (Notes to Financial Statement) คือข้อมูลที่แสดงเพิ่มเติมต่อจากข้อมูลที่แสดงในงบแสดงฐานะการเงิน คือข้อมูลที่แสดงเพิ่มเติมต่อจากข้อมูลที่แสดงในงบแสดงฐานะการเงินคือข้อมูลที่แสดงเพิ่มเติม ต่อจากข้อมูลที่แสดงในงบแสดงฐานะการเงิน คือข้อมูลที่แสดงเพิ่มเติมต่อจากข้อมูลที่แสดงในงบแสดงฐานะการเงินคือข้อมูลที่แสดงเพิ่มเติม ต่อจากข้อมูลที่แสดงในงบแสดงฐานะการเงิน ',
   productValueBeforeFormDiscount: 0,
   selectedTableType: 1,
   selectedCalType: 1,
@@ -32,7 +34,7 @@ const companyData = {
   paymentCondition: null,
   deposit: 0,
   taxIdent: '1681551379',
-  companyAddress: 'ชั้นที่ 14 ห้อง 1406 อาคาร Park เลขที่ 1 ถ.สีลม เขตบางรัก กรุงเทพมหานคร 10500',
+  companyAddress: 'อาคารแชปเตอร์วัน โมเดิร์นดัชต์ คอนโดมิเนียม อาคารบี ชั้น1 เลขที่69/1866 ซอยราษฎร์บูรณะ33',
   companyName: 'company1',
   logoCompany: null,
   email: 'company1@gmail.com',
@@ -43,8 +45,6 @@ const companyData = {
   createdPerson: 'rrrrVV eeeeFGG',
   userFirstName: 'rrrrVV',
   userLastName: 'eeeeFGG',
-  userSignature:
-    'https://s3.ap-southeast-1.amazonaws.com/new-accistant.accrevos.com/user/b08738d5-0fbf-4db0-bb0c-f10ce0229d54/signature/1717690803010-new_signature_name.png?AWSAccessKeyId=AKIATDTLGGMUQQUEEWZI&Expires=1750320342&Signature=%2BtQ7R5rnjd3R5h31Jk6C%2Fv47OJQ%3D',
   approvalPerson: '',
   isCustomVat: false,
   isVatCal: false,
@@ -83,7 +83,8 @@ const companyData = {
     {
       selectedProductId: 'd119ff66-2fee-4474-8397-911ac5d90de1',
       productName: 'ชาเขียวแท้ บรรจุขวด 100%',
-      productDescription: 'ชาเขียวแท้ 100% บรรจุขวด',
+      productDescription:
+        'Toro Toro โทโร โทโร่ ขนมครีมแมวเลีย สูตรปลาทูน่าเนื้อขาวกับอลาสก้าแซลมอน พลัสวิตามิน A 15 g 5 ชิ้น==> ขนมแมวเลียผสมวิตตามิน A ช่วยบำรุงสายตาและการมองเห็น',
       unitId: '2e063f6e-97a1-4be7-95a0-001e710c1dd6',
       unitName: 'ลัง',
       unitPrice: 500,
@@ -98,7 +99,8 @@ const companyData = {
     {
       selectedProductId: 'd119ff66-2fee-4474-8397-911ac5d90de1',
       productName: 'ชาเขียวแท้ บรรจุขวด 100%',
-      productDescription: 'ชาเขียวแท้ 100% บรรจุขวด',
+      productDescription:
+        'Me-O มีโอ ครีมมี่ทรีตขนมแมวเลีย รสไก่และตับ 15 g, 20 ชิ้น==> เหมาะสำหรับแมวอายุ 2 เดือนขึ้นไป เป็นขนมครีมแมวเลียที่เสริมด้วยวิตามินและแร่ธาตุที่เป็นประโยชน์ต่อสุขภาพแมว',
       unitId: '2e063f6e-97a1-4be7-95a0-001e710c1dd6',
       unitName: 'ลัง',
       unitPrice: 500,
@@ -415,8 +417,11 @@ const companyData = {
   branchName: 'สำนักงานใหญ่',
   state: 0,
   yearType: 1,
+  // NOTE: ข้อมูลข้างใต้ พัตเตอร์สร้างขึ้นมาเอง
   companyLogo:
     'https://s3.ap-southeast-1.amazonaws.com/new-accistant.accrevos.com/tenant/5325435345324/logoCompany/1718789307543-1718789304965?AWSAccessKeyId=AKIATDTLGGMUQQUEEWZI&Expires=1750325307&Signature=z80E6WVrfvkYZaqogSJ09Qlr9WY%3D',
+  userSignature:
+    'https://s3.ap-southeast-1.amazonaws.com/new-accistant.accrevos.com/user/b08738d5-0fbf-4db0-bb0c-f10ce0229d54/signature/1717690803010-new_signature_name.png?AWSAccessKeyId=AKIATDTLGGMUQQUEEWZI&Expires=1750320342&Signature=%2BtQ7R5rnjd3R5h31Jk6C%2Fv47OJQ%3D',
 };
 
 module.exports = companyData;

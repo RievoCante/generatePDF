@@ -18,6 +18,9 @@
       <div id="invoice">
         <h1 id="docName">ใบเสนอราคา<br />Quotation</h1>
         <p id="pageNumber"><%= (i + 1) %> / <%= (additionalPages + 1) %></p>
+
+        <!------------------------------------------------------------------------->
+
         <div class="topRight">
           <table id="docInfo">
             <tr>
@@ -42,69 +45,96 @@
           </table>
         </div>
 
+        <!------------------------------------------------------------------------->
+
         <img
           id="companyLogo"
           src="data:image/png;base64,<%= base64CompanyLogo %>"
           alt="Company Logo"
         />
 
+        <!------------------------------------------------------------------------->
+
         <div class="first-section">
-          <p>
-            ชื่อบริษัท/Company Name:
-            <span class="answer" id="companyName"><%= data.contactName %></span>
-          </p>
-          <p>
-            ที่อยู่/Address:
-            <span class="answer" id="companyAddress"><%= data.contactAddress %></span>
-          </p>
-          <p>
-            เลขผู้เสียภาษี/Tax ID:
-            <span class="answer" id="taxId"><%= data.contactTaxId %></span>
-          </p>
-          <p>
-            เบอร์โทรศัพท์/Tel:
-            <span class="answer" id="tel"><%= data.contactMobile %></span>
-          </p>
-          <p>
-            อีเมล/E-mail:
-            <span class="answer" id="email"><%= data.contactEmail %></span>
-          </p>
+          <div>
+            <p>
+              ชื่อบริษัท/Company Name:
+              <span class="answer" id="companyName"><%= data.contactName %></span>
+            </p>
+            <p>
+              ที่อยู่/Address:
+              <span class="answer" id="companyAddress"><%= data.contactAddress %></span>
+            </p>
+          </div>
+
+          <div style="display: flex">
+            <div class="left">
+              <p>
+                เลขผู้เสียภาษี/Tax ID:
+                <span class="answer"><%= data.contactTaxId %></span>
+              </p>
+              <p>
+                เบอร์โทรศัพท์/Tel:
+                <span class="answer"><%= data.contactMobile %></span>
+              </p>
+            </div>
+
+            <div class="right">
+              <p>
+                สาขา/Branch:
+                <span class="answer"><%= data.branchName %></span>
+              </p>
+              <p>
+                อีเมล/E-mail:
+                <span class="answer"><%= data.contactEmail %></span>
+              </p>
+            </div>
+          </div>
         </div>
 
+        <!------------------------------------------------------------------------->
         <hr />
 
         <div class="second-section">
-          <div class="left">
+          <div>
             <p>
               ลูกค้า/Customer:
               <span class="answer" id="customerName"><%= data.createdPerson %></span>
             </p>
-            <p>
+            <p style="word-wrap: normal">
               ที่อยู่/Address:
               <span class="answer" id="customerAddress"><%= data.companyAddress %></span>
             </p>
-            <p>
-              ผู้ติดต่อ/Attention:
-              <span class="answer" id="attention"><%= data.createdPerson %></span>
-            </p>
           </div>
-          <div class="right">
-            <p>
-              เลขผู้เสียภาษี/Tax ID:
-              <span class="answer"><%= data.contactTaxId %></span>
-            </p>
-            <p>
-              เบอร์โทรศัพท์/Tel. :
-              <span class="answer"><%= data.telephone %></span>
-            </p>
-            <p>
-              E-mail:
-              <span class="answer"><%= data.email %></span>
-            </p>
+
+          <div style="display: flex">
+            <div class="left">
+              <p>
+                เลขผู้เสียภาษี/Tax ID:
+                <span class="answer"><%= data.contactTaxId %></span>
+              </p>
+              <p>
+                ผู้ติดต่อ/Attention:
+                <span class="answer" id="attention"><%= data.createdPerson %></span>
+              </p>
+            </div>
+
+            <div class="right">
+              <p>
+                เบอร์โทรศัพท์/Tel. :
+                <span class="answer"><%= data.telephone %></span>
+              </p>
+              <p>
+                E-mail:
+                <span class="answer"><%= data.email %></span>
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="section">
+        <!------------------------------------------------------------------------->
+
+        <div class="third-section">
           <table id="itemTable">
             <thead>
               <tr>
@@ -122,25 +152,26 @@
             <% data.documentItems.slice(i*10, (i + 1)*10).forEach((item, index) => { %>
             <tbody>
               <tr>
-                <td class="answer" style="width: 4%; text-align: center">
+                <td class="answer" style="width: 5mm; text-align: center">
                   <%= (i*10) + index +1 %>
                 </td>
-                <td class="answer" style="width: 12%; text-align: left"><%= item.productCode %></td>
-                <td class="answer" style="width: 36.5%; text-align: left">
-                  <%= item.productName %><br /><span style="font-size: 8.5px"
-                    ><%= item.productDescription %></span
-                  >
+                <td class="answer" style="width: 9mm; text-align: left"><%= item.productCode %></td>
+                <td class="answer" style="width: 65mm; text-align: left">
+                  <%= item.productName %><br />
+                  <span id="productDescription"><%=item.productDescription%></span>
                 </td>
-                <td class="answer" style="width: 7%; text-align: right"><%= item.quantity %></td>
-                <td class="answer" style="width: 11.5%; text-align: right">
+                <td class="answer" style="width: 3mm; text-align: right"><%= item.quantity %></td>
+                <td class="answer" style="width: 14mm; text-align: right">
                   <%= item.unitPrice %>
                 </td>
-                <td class="answer" style="width: 9%; text-align: right"><%= item.discount %></td>
-                <td class="answer" style="width: 6%; text-align: right">
+                <td class="answer" style="width: 9mm; text-align: right"><%= item.discount %></td>
+                <td class="answer" style="width: 9mm; text-align: right">
                   <%= item.selected_vat %>%
                 </td>
-                <td class="answer" style="width: 14%; text-align: right">
+                <td class="answer" style="width: 14mm; text-align: right">
                   <%= helper.formatTwoDigits(item.totalPriceBeforeTax) %>
+                </td>
+              </tr>
                 </td>
               </tr>
             </tbody>
@@ -148,19 +179,12 @@
           </table>
         </div>
 
+        <!------------------------------------------------------------------------->
+
         <div id="remark" class="flex">
           <div class="c1">
             <p style="font-size: 13px; padding: 3px; font-weight: bold">หมายเหตุ / Remark:</p>
-            <p>1. &emsp;[PLACEHOLDER]</p>
-            <p>2. &emsp;[PLACEHOLDER]</p>
-            <p>3. &emsp;[PLACEHOLDER]</p>
-            <p>4. &emsp;[PLACEHOLDER]</p>
-            <p>5. &emsp;[PLACEHOLDER]</p>
-            <p>6. &emsp;[PLACEHOLDER]</p>
-            <p>7. &emsp;[PLACEHOLDER]</p>
-            <p>8. &emsp;[PLACEHOLDER]</p>
-            <p>9. &emsp;[PLACEHOLDER]</p>
-            <p>10.&ensp;&nbsp;[PLACEHOLDER]</p>
+            <p style="font-size: 10px; width: 110mm"><%= data.remark %></p>
           </div>
 
           <div class="c2">
@@ -170,6 +194,10 @@
             <p>จำนวนเงินรวมทั้งสิ้น / Total</p>
             <p>หัก ณ ที่จ่าย / Withholding Tax</p>
             <p>จำนวนเงินสุทธิ / Grand Total</p>
+            <p>&emsp;</p>
+            <p>&emsp;</p>
+            <p>&emsp;</p>
+            <p>&emsp;</p>
           </div>
 
           <div class="c3">
@@ -244,7 +272,7 @@
           </div>
 
           <div style="width: 25%; text-align: center">
-            <!-- เดี๋ยวมาแก้ -->
+            <!-- NOTE: comeback -->
             <p>
               ยอมรับใบเสนอราคา / Accepted by<br /><br /><br /><br /><br /><br /><br /><br /><br />
             </p>

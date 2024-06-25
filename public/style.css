@@ -1,4 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap'); */
+
+@font-face {
+  font-family: 'Noto Sans Thai';
+  src: url('./NotoSansThai.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
   font-family: 'Noto Sans Thai', sans-serif;
@@ -95,16 +102,14 @@ p {
 .second-section {
   padding-top: 0;
   padding-bottom: 2mm;
-  display: flex;
+}
+
+.third-section {
+  padding-top: 0;
 }
 
 .flex {
   display: flex;
-}
-
-.left,
-.right {
-  width: 100%;
 }
 
 #companyLogo {
@@ -146,7 +151,7 @@ p {
 .left,
 .right {
   width: 48%;
-  margin-right: 20px;
+  margin-right: 5mm;
 }
 
 /* ------------- TABLE -----------------*/
@@ -175,13 +180,21 @@ thead th {
 #itemTable td {
   padding-left: 1.5mm;
   padding-right: 1.5mm;
-  padding-top: 0.4mm;
-  padding-bottom: 0.4mm;
+  padding-top: 0mm;
+  padding-bottom: 0mm;
+  margin-top: 0;
+  margin-bottom: 0;
   background-color: #f0ecf4;
-  /* NOTE: experimenting */
-  /* word-wrap: unset; */
 }
 
+#productDescription {
+  font-size: 8px;
+  padding-bottom: 0mm;
+  padding-top: 0mm;
+  max-width: 5px;
+  white-space: normal;
+  word-wrap: break-word;
+}
 /* ------------------------------------*/
 
 #total {
