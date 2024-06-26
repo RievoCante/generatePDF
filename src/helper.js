@@ -20,8 +20,11 @@ function formatTwoDigits(number) {
   return `${number.toFixed(2)}`;
 }
 
-function insertBrEveryTwoThaiWords(text) {
-  return text.replace(/([ก-๛]+?)([\s|$])/g, '$1<br />').replace(/<br \/>$/, '');
+function formatNumber(value) {
+  if (value === null || value === undefined) {
+    return '';
+  }
+  return value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 module.exports = {
@@ -30,5 +33,5 @@ module.exports = {
   formatDate,
   convertToPercent,
   formatTwoDigits,
-  insertBrEveryTwoThaiWords,
+  formatNumber,
 };

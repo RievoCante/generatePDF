@@ -162,14 +162,14 @@
                 </td>
                 <td class="answer" style="width: 3mm; text-align: right"><%= item.quantity %></td>
                 <td class="answer" style="width: 14mm; text-align: right">
-                  <%= item.unitPrice %>
+                  <%= helper.formatNumber(item.unitPrice) %>
                 </td>
-                <td class="answer" style="width: 9mm; text-align: right"><%= item.discount %></td>
+                <td class="answer" style="width: 9mm; text-align: right"><%= helper.formatNumber(item.discount) %></td>
                 <td class="answer" style="width: 9mm; text-align: right">
                   <%= item.selected_vat %>%
                 </td>
                 <td class="answer" style="width: 14mm; text-align: right">
-                  <%= helper.formatTwoDigits(item.totalPriceBeforeTax) %>
+                  <%= helper.formatNumber(item.totalPriceBeforeTax) %>
                 </td>
               </tr>
                 </td>
@@ -201,14 +201,14 @@
           </div>
 
           <div class="c3">
-            <p style="padding-top: 3px"><%= helper.formatTwoDigits(data.discountAmount) %></p>
-            <p><%= helper.formatTwoDigits(data.netTaxablePrice) %></p>
+            <p style="padding-top: 3px"><%= helper.formatNumber(data.discountAmount) %></p>
+            <p><%= helper.formatNumber(data.netTaxablePrice) %></p>
             <p>&nbsp;</p>
-            <p><%= helper.formatTwoDigits(data.vatAmount) %></p>
+            <p><%= helper.formatNumber(data.vatAmount) %></p>
             <!-- REVIEW: can't find this variable (จำนวนเงินรวมทั้งสิ้น) -->
-            <p><%= helper.formatTwoDigits(data.grandTotal) %></p>
-            <p><%= helper.formatTwoDigits(data.withholdingTaxAmount) %></p>
-            <p><%= helper.formatTwoDigits(data.grandTotal) %></p>
+            <p><%= helper.formatNumber(data.grandTotal) %></p>
+            <p><%= helper.formatNumber(data.withholdingTaxAmount) %></p>
+            <p><%= helper.formatNumber(data.grandTotal) %></p>
           </div>
         </div>
 
