@@ -212,9 +212,8 @@
           </div>
         </div>
 
-        <!-- NOTE: Working on this-->
         <p id="total">
-          - จำนวนเงินสุทธิ <%= thaiBath.arabicNumberToText(data.grandTotal) %> -&emsp;
+          - จำนวนเงินสุทธิ <%= thaiBath.arabicNumberToText(helper.formatNumber(data.grandTotal)) %> -&emsp;
         </p>
 
         <div class="flex">
