@@ -117,17 +117,25 @@ p {
   display: flex;
 }
 
-#userSignature {
+#signature {
   margin-top: 4mm;
   margin-bottom: 0mm;
   width: auto;
-  height: 15mm;
+  height: 13mm;
+  display: fixed;
+}
+
+#eStamp {
+  margin-top: 4mm;
+  margin-bottom: 0mm;
+  width: auto;
+  height: 25mm;
   display: fixed;
 }
 
 .c1 {
   background-color: #d0d4ec;
-  width: 59.7%;
+  width: 68%;
   border-left: 1px solid #000;
   border-bottom: 1px solid #000;
   border-right: 1px solid #000;
@@ -135,14 +143,14 @@ p {
 
 .c2 {
   background-color: #d0d4ec;
-  width: 26.5%;
+  width: 20%;
   text-align: right;
   border-bottom: 1px solid #000;
   border-right: 1px solid #000;
 }
 .c3 {
   background-color: #d0d4ec;
-  width: 13.8%;
+  width: 12%;
   text-align: right;
   border-bottom: 1px solid #000;
   border-right: 1px solid #000;
@@ -184,16 +192,15 @@ thead th {
   padding-bottom: 0mm;
   margin-top: 0;
   margin-bottom: 0;
-  background-color: #f0ecf4;
+  background-color: #ffffff;
 }
 
 #productDescription {
   font-size: 8px;
   padding-bottom: 0mm;
   padding-top: 0mm;
-  max-width: 5px;
-  white-space: normal;
-  word-wrap: break-word;
+  /* width: 20%; */
+  /* word-wrap: break-word; */
 }
 /* ------------------------------------*/
 
@@ -209,6 +216,10 @@ thead th {
   padding-top: 1.5mm;
   padding-bottom: 1.5mm;
   font-weight: bold;
+}
+
+#remark {
+  font-size: 10px;
 }
 
 hr {
@@ -238,6 +249,7 @@ body {
   font-size: 12px;
   font-weight: 900;
   padding-bottom: 2mm;
+  margin-left: 2mm;
 }
 
 button {

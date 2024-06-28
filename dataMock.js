@@ -19,19 +19,21 @@ const companyData = {
   netProductValue: 0,
   selectedPayTax: 0.0075,
   selectedVatPercent: 7,
+
   vatAmount: 535,
-  grandTotal: 22310.6368,
+  grandTotal: 18401.9,
+  // หมายเหตุประกอบงบการเงิน (Notes to Financial Statement) คือข้อมูลที่แสดงเพิ่มเติมต่อจากข้อมูลที่แสดงในงบแสดงฐานะการเงิน คือข้อมูลที่แสดงเพิ่มเติมต่อจากข้อมูลที่แสดงในงบแสดงฐานะการเงินคือข้อมูลที่แสดงเพิ่มเติม ต่อจากข้อมูลที่แสดงในงบแสดงฐานะการเงิน คือข้อมูลที่แสดงเพิ่มเติมต่อจากข้อมูลที่แสดงในงบแสดงฐานะการเงินคือข้อมูลที่แสดงเพิ่มเติม ต่อจากข้อมูลที่แสดงในงบแสดงฐานะการเงิน
   remark:
-    'หมายเหตุประกอบงบการเงิน (Notes to Financial Statement) คือข้อมูลที่แสดงเพิ่มเติมต่อจากข้อมูลที่แสดงในงบแสดงฐานะการเงิน คือข้อมูลที่แสดงเพิ่มเติมต่อจากข้อมูลที่แสดงในงบแสดงฐานะการเงินคือข้อมูลที่แสดงเพิ่มเติม ต่อจากข้อมูลที่แสดงในงบแสดงฐานะการเงิน คือข้อมูลที่แสดงเพิ่มเติมต่อจากข้อมูลที่แสดงในงบแสดงฐานะการเงินคือข้อมูลที่แสดงเพิ่มเติม ต่อจากข้อมูลที่แสดงในงบแสดงฐานะการเงิน ',
+    'หมายเหตุ หรือ เชิงอรรถ คือข้อความที่วางอยู่ที่ตำแหน่งล่างสุดของหน้าในหนังสือหรือเอกสาร หรือที่ตำแหน่งจบบท จบเล่ม หรือข้อความทั้งหมด เนื้อหาของหมายเหตุสามารถใส่ความเห็นของผู้แต่งจากข้อความหลัก หรือการอ้างอิงงานเขียนที่สนับสนุนข้อความ หรือทั้งสองอย่าง การระบุหมายเหตุตามปกติกระทำโดยกำกับตัวเลขแบบตัวยกตามหลังส่วนของข้อความที่อ้างถึงหมายเหตุทันที ตัวอย่างเช่น การระบุหมายเหตุตามปกติกระทำโดยกำกับตัวเลขแบบตัวยกตามหลังส่วนของข้อความที่อ้างถึงหมายเหตุทันทีการระบุ',
   productValueBeforeFormDiscount: 0,
-  selectedTableType: 1,
+  selectedTableType: 0, //NOTE: if 0 -> แยกรายการ (เพิ่ม 1.ส่วนลด 2.ภาษี 3.หัก ณ ที่จ่าย) / 1 -> รวมท้ายบิล
   selectedCalType: 1,
   issuedDate: '2024-06-04',
   dueDate: '2024-06-04',
   sumIncludeTax: null,
   withholdingTaxAmount: 3.75,
   vatPrice: 35,
-  paymentCondition: null,
+  paymentCondition: 'asfsafsdaf asdfasdf asdfsadfasdfssf',
   deposit: 0,
   taxIdent: '1681551379',
   companyAddress: 'อาคารแชปเตอร์วัน โมเดิร์นดัชต์ คอนโดมิเนียม อาคารบี ชั้น1 เลขที่69/1866 ซอยราษฎร์บูรณะ33',
@@ -39,7 +41,8 @@ const companyData = {
   logoCompany: null,
   email: 'company1@gmail.com',
   telephone: '11112312123',
-  eStamp: null,
+  eStamp:
+    'https://s3.ap-southeast-1.amazonaws.com/new-accistant.accrevos.com/tenant/6666666666666/estamp/1719545190610-1719545189670?AWSAccessKeyId=AKIATDTLGGMUQQUEEWZI&Expires=1751081191&Signature=KgVnQ1MerjBHQZWej8SECQrqj0A%3D',
   vatRegister: 0,
   createdBy: 'b08738d5-0fbf-4db0-bb0c-f10ce0229d54',
   createdPerson: 'rrrrVV eeeeFGG',
@@ -52,15 +55,14 @@ const companyData = {
     {
       selectedProductId: 'd119ff66-2fee-4474-8397-911ac5d90de1',
       productName: 'ชาเขียวแท้ บรรจุขวด 100%',
-      productDescription:
-        'ชาเขียวแท้ 100% บรรจุขวด ชาเขียวแท้ 100% บรรจุขวด ชาเขียวแท้ 100% บรรจุขวด ชาเขียวแท้ 100% บรรจุขวด',
+      productDescription: 'ชาเขียวแท้ 100% บรรจุขวด ชาเขียวแท้ 100% บรรจุขวด ชาเขียวแท้ 100% บรรจุขวด ชาเขียวแท้',
       unitId: '2e063f6e-97a1-4be7-95a0-001e710c1dd6',
       unitName: 'ลัง',
       unitPrice: 500,
       discount: 50,
       quantity: 1,
       totalPriceBeforeTax: 333,
-      selected_paytax: 0,
+      selected_paytax: 0.02,
       selected_vat: 0,
       productCode: 'PO00001',
       productId: 'd119ff66-2fee-4474-8397-911ac5d90de1',
@@ -68,14 +70,14 @@ const companyData = {
     {
       selectedProductId: 'd119ff66-2fee-4474-8397-911ac5d90de1',
       productName: 'ชาเขียวแท้ บรรจุขวด 100%',
-      productDescription: 'บบบบบบบบบ บบบบบบบบบบบบ บบบบบ บบบบบบบบบบบบบบ ชาเขียวแท้ บรรจุขวด 100%',
+      productDescription: 'บบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบ บบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบ บบบบ',
       unitId: '2e063f6e-97a1-4be7-95a0-001e710c1dd6',
       unitName: 'ลัง',
       unitPrice: 500,
       discount: 20,
       quantity: 1,
       totalPriceBeforeTax: 222,
-      selected_paytax: 0,
+      selected_paytax: 0.01,
       selected_vat: 7,
       productCode: 'PO00001',
       productId: 'd119ff66-2fee-4474-8397-911ac5d90de1',
@@ -100,7 +102,7 @@ const companyData = {
       selectedProductId: 'd119ff66-2fee-4474-8397-911ac5d90de1',
       productName: 'ชาเขียวแท้ บรรจุขวด 100%',
       productDescription:
-        'Me-O มีโอ ครีมมี่ทรีตขนมแมวเลีย รสไก่และตับ 15 g, 20 ชิ้น==> เหมาะสำหรับแมวอายุ 2 เดือนขึ้นไป เป็นขนมครีมแมวเลียที่เสริมด้วยวิตามินและแร่ธาตุที่เป็นประโยชน์ต่อสุขภาพแมว',
+        'Me-O มีโอ ครีมมี่ทรีตขนมแมวเลีย รสไก่และตับ 15 g, 20 ชิ้น==> เหมาะสำหรับแมวอายุ 2 เดือนขึ้นไป เป็นขนมครีมแมวเลียที่เสริมด้วยวิตามินและแร่ธาตุที่เป็นประโยชน์ต่อสุขภาพแมว ',
       unitId: '2e063f6e-97a1-4be7-95a0-001e710c1dd6',
       unitName: 'ลัง',
       unitPrice: 500,
@@ -160,7 +162,7 @@ const companyData = {
     {
       selectedProductId: 'd119ff66-2fee-4474-8397-911ac5d90de1',
       productName: 'ชาเขียวแท้ บรรจุขวด 100%',
-      productDescription: 'ชาเขียวแท้ 100% บรรจุขวด',
+      productDescription: 'บบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบบะะะะะะะะะะ',
       unitId: '2e063f6e-97a1-4be7-95a0-001e710c1dd6',
       unitName: 'ลัง',
       unitPrice: 500,
@@ -422,6 +424,8 @@ const companyData = {
     'https://s3.ap-southeast-1.amazonaws.com/new-accistant.accrevos.com/tenant/5325435345324/logoCompany/1718789307543-1718789304965?AWSAccessKeyId=AKIATDTLGGMUQQUEEWZI&Expires=1750325307&Signature=z80E6WVrfvkYZaqogSJ09Qlr9WY%3D',
   userSignature:
     'https://s3.ap-southeast-1.amazonaws.com/new-accistant.accrevos.com/user/b08738d5-0fbf-4db0-bb0c-f10ce0229d54/signature/1717690803010-new_signature_name.png?AWSAccessKeyId=AKIATDTLGGMUQQUEEWZI&Expires=1750320342&Signature=%2BtQ7R5rnjd3R5h31Jk6C%2Fv47OJQ%3D',
+  createdBySignature:
+    'https://s3.ap-southeast-1.amazonaws.com/new-accistant.accrevos.com/user/b08738d5-0fbf-4db0-bb0c-f10ce0229d54/signature/1719542251582-new_signature_name.png?AWSAccessKeyId=AKIATDTLGGMUQQUEEWZI&Expires=1751079952&Signature=4IUbl2w1yGvpG9VTj3WS2P8Nayc%3D',
 };
 
 module.exports = companyData;

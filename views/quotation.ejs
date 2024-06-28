@@ -45,7 +45,7 @@
           </table>
         </div>
 
-        <!------------------------------------------------------------------------->
+        <!------------------------------ COMPANY LOGO --------------------------------->
 
         <img
           id="companyLogo"
@@ -53,7 +53,7 @@
           alt="Company Logo"
         />
 
-        <!------------------------------------------------------------------------->
+        <!--------------------------------- COMPANY INFO --------------------------------->
 
         <div class="first-section">
           <div>
@@ -92,7 +92,7 @@
           </div>
         </div>
 
-        <!------------------------------------------------------------------------->
+        <!-------------------------------- CUSTOMER INFO ------------------------------------>
         <hr />
 
         <div class="second-section">
@@ -132,8 +132,10 @@
           </div>
         </div>
 
-        <!------------------------------------------------------------------------->
+        <!---------------------------- ITEM TABLE ------------------------------->
 
+        <!---------------------- แยกรายการ ------------------------->
+        <% if (!data.selectedTableType) { %>
         <div class="third-section">
           <table id="itemTable">
             <thead>
@@ -142,49 +144,116 @@
                 <th>รหัส<br />ID No.</th>
                 <th>รายการสินค้า<br />Product</th>
                 <th>จำนวน<br />Quantity</th>
-                <th>ราคาต่อหน่วย<br />Unit Price</th>
+                <th>ราคา<br />ต่อหน่วย<br />Unit Price</th>
                 <th>ส่วนลด<br />Discount</th>
                 <th>ภาษี<br />VAT</th>
+                <th>หัก ณ ที่จ่าย<br />WithholdingTax</th>
                 <th>มูลค่าก่อนภาษี<br />Pre-Tax Amount</th>
               </tr>
             </thead>
 
-            <% data.documentItems.slice(i*10, (i + 1)*10).forEach((item, index) => { %>
+            <% data.documentItems.slice(i*7, (i + 1)*7).forEach((item, index) => { %> <% const
+            productDescription = reorganizeText.reorganizeItemDescription(item.productDescription);
+            %>
             <tbody>
               <tr>
-                <td class="answer" style="width: 5mm; text-align: center">
-                  <%= (i*10) + index +1 %>
+                <td class="answer" style="max-width: 5mm; text-align: center">
+                  <%= (i*7) + index +1 %>
                 </td>
-                <td class="answer" style="width: 9mm; text-align: left"><%= item.productCode %></td>
-                <td class="answer" style="width: 65mm; text-align: left">
+                <td class="answer" style="max-width: 14mm; text-align: left">
+                  <%= item.productCode %>
+                </td>
+                <td class="answer" style="max-width: 90mm; text-align: left">
                   <%= item.productName %><br />
-                  <span id="productDescription"><%=item.productDescription%></span>
+                  <!--  -->
+                  <% productDescription.forEach(item => { %>
+                  <span id="productDescription"><%= item %></span><br />
+                  <% }); %>
+                  <!--  -->
                 </td>
-                <td class="answer" style="width: 3mm; text-align: right"><%= item.quantity %></td>
-                <td class="answer" style="width: 14mm; text-align: right">
+                <td class="answer" style="max-width: 20mm; text-align: right">
+                  <%= item.quantity %>
+                </td>
+                <td class="answer" style="max-width: 20mm; text-align: right">
                   <%= helper.formatNumber(item.unitPrice) %>
                 </td>
-                <td class="answer" style="width: 9mm; text-align: right"><%= helper.formatNumber(item.discount) %></td>
-                <td class="answer" style="width: 9mm; text-align: right">
+                <td class="answer" style="max-width: 9mm; text-align: right">
+                  <%= helper.formatNumber(item.discount) %>
+                </td>
+                <td class="answer" style="max-width: 9mm; text-align: right">
                   <%= item.selected_vat %>%
                 </td>
-                <td class="answer" style="width: 14mm; text-align: right">
-                  <%= helper.formatNumber(item.totalPriceBeforeTax) %>
+                <td class="answer" style="max-width: 8mm; text-align: right">
+                  <%= helper.convertToPercent(item.selected_paytax) %>
                 </td>
-              </tr>
+                <td class="answer" style="max-width: 8mm; text-align: right">
+                  <%= helper.formatNumber(item.totalPriceBeforeTax) %>
                 </td>
               </tr>
             </tbody>
             <% }); %>
           </table>
         </div>
+        <% };%>
 
-        <!------------------------------------------------------------------------->
+        <!------------------------- รวมท้ายบิล -------------------------->
+
+        <% if (data.selectedTableType) { %>
+        <div class="third-section">
+          <table id="itemTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>รหัส<br />ID No.</th>
+                <th>รายการสินค้า<br />Product</th>
+                <th>จำนวน<br />Quantity</th>
+                <th>ราคา<br />ต่อหน่วย<br />Unit Price</th>
+                <th>มูลค่าก่อนภาษี<br />Pre-Tax Amount</th>
+              </tr>
+            </thead>
+
+            <% data.documentItems.slice(i*7, (i + 1)*7).forEach((item, index) => { %><% const
+            productDescription = reorganizeText.reorganizeItemDescription(item.productDescription,
+            100); %>
+            <tbody>
+              <tr>
+                <td class="answer" style="max-width: 5mm; text-align: center">
+                  <%= (i*7) + index +1 %>
+                </td>
+                <td class="answer" style="max-width: 14mm; text-align: left">
+                  <%= item.productCode %>
+                </td>
+                <td class="answer" style="max-width: 90mm; text-align: left">
+                  <%= item.productName %><br />
+                  <!--  -->
+                  <% productDescription.forEach(item => { %>
+                  <span id="productDescription"><%= item %></span><br />
+                  <% }); %>
+                  <!--  -->
+                </td>
+                <td class="answer" style="max-width: 20mm; text-align: right">
+                  <%= item.quantity %>
+                </td>
+                <td class="answer" style="max-width: 20mm; text-align: right">
+                  <%= helper.formatNumber(item.unitPrice) %>
+                </td>
+                <td class="answer" style="max-width: 8mm; text-align: right">
+                  <%= helper.formatNumber(item.totalPriceBeforeTax) %>
+                </td>
+              </tr>
+            </tbody>
+            <% }); %>
+          </table>
+        </div>
+        <% };%>
+        <!------------------------------ REMARK ------------------------------->
 
         <div id="remark" class="flex">
           <div class="c1">
-            <p style="font-size: 13px; padding: 3px; font-weight: bold">หมายเหตุ / Remark:</p>
-            <p style="font-size: 10px; width: 110mm"><%= data.remark %></p>
+            <p style="font-size: 13px; padding: 1.5mm; font-weight: bold">หมายเหตุ / Remark:</p>
+            <% fixedRemark.forEach(item => { %>
+            <p style="font-size: 10px; padding-left: 1.5mm; padding-right: 1.5mm"><%= item %></p>
+            <% }); %>
           </div>
 
           <div class="c2">
@@ -213,10 +282,13 @@
         </div>
 
         <p id="total">
-          - จำนวนเงินสุทธิ <%= thaiBath.arabicNumberToText(helper.formatNumber(data.grandTotal)) %> -&emsp;
+          - จำนวนเงินสุทธิ <%= thaiBath.arabicNumberToText(helper.formatNumber(data.grandTotal)) %>
+          -&emsp;<br />
+          - <%= numberToEnglish(helper.formatNumber(data.grandTotal)) %> -&emsp;
         </p>
 
-        <div class="flex">
+        <!-- REVIEW: ไม่รู้เอาแบบไหน -->
+        <!-- <div class="flex">
           <div style="width: 50%">
             <p id="payment">ช่องทางการชำระเงิน / Payment</p>
             <table id="paymentTable">
@@ -230,54 +302,59 @@
               <tbody>
                 <tr>
                   <td>[PLACEHOLDER]</td>
-                  <td>[PLACEHOLDER]</td>
-                  <td>[PLACEHOLDER]</td>
-                </tr>
-                <tr>
-                  <td>[PLACEHOLDER]</td>
-                  <td>[PLACEHOLDER]</td>
-                  <td>[PLACEHOLDER]</td>
-                </tr>
-                <tr>
-                  <td>[PLACEHOLDER]</td>
-                  <td>[PLACEHOLDER]</td>
-                  <td>[PLACEHOLDER]</td>
-                </tr>
-                <tr>
-                  <td>[PLACEHOLDER]</td>
-                  <td>[PLACEHOLDER]</td>
-                  <td>[PLACEHOLDER]</td>
-                </tr>
-                <tr>
-                  <td>[PLACEHOLDER]</td>
-                  <td>[PLACEHOLDER]</td>
+                  <td>[PLACEHOLDER PLACEHOLDER]</td>
                   <td>[PLACEHOLDER]</td>
                 </tr>
               </tbody>
             </table>
           </div>
+        </div> -->
+        <span id="payment">เงื่อนไขการชำระเงิน / Payment Condition: </span>
+        <span style="font-size: 10px"><%=data.paymentCondition %></span>
 
-          <!-- PROBLEM: ตอนโหลดpdf รูปไม่ขึ้น -->
-          <div style="width: 25%; text-align: center">
-            <p>อนุมัติโดย / Approved by %></p>
+        <!------------------------------------------------------------------------->
+
+        <div class="flex" style="border: 1px solid #000; margin: 1mm">
+          <div
+            style="width: 20%; text-align: center; border-right: 1px solid #000; padding-top: 1mm"
+          >
+            <p>สร้างโดย / Created by</p>
             <img
-              id="userSignature"
-              src="data:image/png;base64,<%= base64Signature %>"
-              alt="User Signature"
+              id="signature"
+              src="data:image/png;base64,<%= base64CreatedBySignature %>"
+              alt="Created By Signature"
             />
             <p style="opacity: 0.2">___________________________<br /><br /></p>
             <p>(__________________________)<br /><br /></p>
             <p>วันที่ / Date _________________</p>
           </div>
 
-          <div style="width: 25%; text-align: center">
-            <!-- NOTE: comeback -->
-            <p>
-              ยอมรับใบเสนอราคา / Accepted by<br /><br /><br /><br /><br /><br /><br /><br /><br />
-            </p>
+          <div style="width: 20%; text-align: center; border-right: 1px solid #000">
+            <p style="padding-top: 1mm">อนุมัติโดย / Approved by</p>
+            <img
+              id="signature"
+              src="data:image/png;base64,<%= base64Signature %>"
+              alt="User Signature"
+            />
             <p style="opacity: 0.2">___________________________<br /><br /></p>
             <p>(__________________________)<br /><br /></p>
-            <p>วันที่ / Date _________________</p>
+            <p style="padding-bottom: 1mm">วันที่ / Date _________________</p>
+          </div>
+
+          <div style="width: 20%; text-align: center; border-right: 1px solid #000">
+            <p style="padding-top: 1mm">ตราประทับบริษัท</p>
+            <img id="eStamp" src="data:image/png;base64,<%= base64eStamp %>" alt="eStamp" />
+          </div>
+
+          <div style="width: 20%; text-align: center; border-right: 1px solid #000">
+            <p style="padding-top: 1mm">ยอมรับใบเสนอราคา</p>
+          </div>
+
+          <div style="width: 20%; text-align: center">
+            <p style="padding-top: 1mm; margin-bottom: 16mm">ยอมรับใบเสนอราคา /<br />Accepted by</p>
+            <p style="opacity: 0.2">___________________________<br /><br /></p>
+            <p>(__________________________)<br /><br /></p>
+            <p style="padding-bottom: 1mm">วันที่ / Date _________________</p>
           </div>
         </div>
       </div>
