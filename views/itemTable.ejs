@@ -1,0 +1,104 @@
+<div class="third-section">
+  <table id="itemTable-<%= i %>">
+    <% const maxRow = 10; const maxWord = data.selectedTableType === 0 ? 30 : 40; %>
+    <!-- if จำนวน item ลงท้ายด้วย 7 8 9 0 -> ไม่มี header หน้าสุดท้าย -->
+    <% const lastDigit = String(data.documentItems.length).slice(-1); %>
+    <!---->
+    <% if (!['7', '8', '9', '0'].includes(lastDigit) || i !== additionalPages) { %>
+    <!-- NOTE: แยกรายการ -->
+    <% if (data.selectedTableType === 0) { %>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>รหัส<br />ID No.</th>
+        <th>รายการสินค้า<br />Product</th>
+        <th>จำนวน<br />Quantity</th>
+        <th>หน่วย<br />Unit</th>
+        <th>ราคาต่อหน่วย<br />Unit Price</th>
+        <th>ส่วนลด<br />Discount</th>
+        <th>ภาษี<br />VAT</th>
+        <th>หัก ณ ที่จ่าย<br />Withholding Tax</th>
+        <th>มูลค่า<br />ก่อนภาษี<br />Pre-Tax Amount</th>
+      </tr>
+    </thead>
+    <% } %>
+    <!-- NOTE: รวมท้ายบิล -->
+    <% if (data.selectedTableType === 1) { %>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>รหัส<br />ID No.</th>
+        <th>รายการสินค้า<br />Product</th>
+        <th>จำนวน<br />Quantity</th>
+        <th>ราคา<br />ต่อหน่วย<br />Unit Price</th>
+        <th>มูลค่าก่อนภาษี<br />Pre-Tax Amount</th>
+      </tr>
+    </thead>
+    <% } %> <% } %>
+    <!------------------------------------------------------------------------>
+    <!-- NOTE: แยกรายการ -->
+    <% if (data.selectedTableType === 0) { %>
+    <!---->
+    <% data.documentItems.slice(i*maxRow, (i + 1)*maxRow).forEach((item, index) => { %> <% const
+    productDescription = reorganizeText(item.productDescription, maxWord ); %>
+    <tbody>
+      <tr>
+        <td class="answer" style="width: 5%; text-align: center"><%= (i*maxRow) + index +1 %></td>
+        <td class="answer" style="width: 10%; text-align: left"><%= item.productCode %></td>
+
+        <td class="answer" style="width: 38%; text-align: left">
+          <span style="font-size: 11px; font-weight: bold"><%= item.productName %></span><br />
+          <!---->
+          <% productDescription.forEach(item => { %>
+          <span id="productDescription"><%= item %></span><br />
+          <% }); %>
+          <!---->
+        </td>
+        <td class="answer" style="width: 2%; text-align: right"><%= item.quantity %></td>
+        <td class="answer" style="width: 5%; text-align: right"><%= item.unitName %></td>
+        <td class="answer" style="width: 12%; text-align: right">
+          <%= helper.formatNumber(item.unitPrice) %>
+        </td>
+        <td class="answer" style="width: 7%; text-align: right">
+          <%= helper.formatNumber(item.discount) %>
+        </td>
+        <td class="answer" style="width: 6%; text-align: right"><%= item.selected_vat %>%</td>
+        <td class="answer" style="width: 3%; text-align: right">
+          <%= helper.convertToPercent(item.selected_paytax) %>
+        </td>
+        <td class="answer" style="width: 12%; text-align: right">
+          <%= helper.formatNumber(item.totalPriceBeforeTax) %>
+        </td>
+      </tr>
+    </tbody>
+    <% }); %> <% }; %>
+
+    <!-- NOTE: รวมท้ายบิล -->
+    <% if (data.selectedTableType === 1) { %>
+    <!---->
+    <% data.documentItems.slice(i*maxRow, (i + 1)*maxRow).forEach((item, index) => { %> <% const
+    productDescription = reorganizeText(item.productDescription, maxWord ); %>
+    <tbody>
+      <tr>
+        <td class="answer" style="width: 5%; text-align: center"><%= (i*maxRow) + index +1 %></td>
+        <td class="answer" style="width: 10%; text-align: left"><%= item.productCode %></td>
+        <td class="answer" style="width: 50%; text-align: left">
+          <span style="font-size: 11px; font-weight: bold"><%= item.productName %></span><br />
+          <!--  -->
+          <% productDescription.forEach(item => { %>
+          <span id="productDescription"><%= item %></span><br />
+          <% }); %>
+          <!--  -->
+        </td>
+        <td class="answer" style="width: 5%; text-align: right"><%= item.quantity %></td>
+        <td class="answer" style="width: 15%; text-align: right">
+          <%= helper.formatNumber(item.unitPrice) %>
+        </td>
+        <td class="answer" style="width: 15%; text-align: right">
+          <%= helper.formatNumber(item.totalPriceBeforeTax) %>
+        </td>
+      </tr>
+    </tbody>
+    <% }); %> <% } %>
+  </table>
+</div>

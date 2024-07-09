@@ -1,0 +1,36 @@
+<div style="margin-top: 1mm">
+  <p>
+    <span class="topic">ชื่อบริษัท/Company Name:</span>
+    <span class="answer" id="companyName"><%= data.contactName %></span>
+  </p>
+  <p>
+    <span class="topic">ที่อยู่/Address:</span>
+    <% fixedCompanyAddress.forEach(item => { %>
+    <span class="answer" id="companyAddress"><%= item %></span><br />
+    <% }); %>
+  </p>
+</div>
+
+<div style="display: flex">
+  <div class="left">
+    <p>
+      <span class="topic">เลขผู้เสียภาษี/Tax ID:</span>
+      <span class="answer"><%= data.contactTaxId %></span>
+    </p>
+    <p>
+      <span class="topic">เบอร์โทรศัพท์/Tel:</span>
+      <span class="answer"><%= data.contactMobile %></span>
+    </p>
+  </div>
+
+  <div class="right">
+    <p>
+      <span class="topic">สาขา/Branch:</span>
+      <span class="answer"><%= data.branchName %></span>
+    </p>
+    <p>
+      <span class="topic">อีเมล/E-mail:</span>
+      <span class="answer"><%= data.contactEmail %></span>
+    </p>
+  </div>
+</div>

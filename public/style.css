@@ -11,25 +11,34 @@ body {
   font-family: 'Noto Sans Thai', sans-serif;
 }
 
-h1 {
-  font-size: 27px;
-  font-weight: bold;
-}
-
 p {
-  font-size: 10px;
+  font-size: 12px;
   line-height: 3.2mm;
   margin: 0.2mm 2mm;
+  padding: 0.5mm;
 }
 
 /* Center the heading */
 #docName {
-  text-align: center;
+  text-align: right;
   position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding-top: 15mm;
+  right: 6mm;
+  top: 19mm;
+  margin-right: 0;
   z-index: -1;
+}
+
+.blueBox {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 5mm;
+  height: 26mm;
+  z-index: -1;
+  /* border: #000 solid 1px; */
+  background-color: #d0d4ec;
+  right: 0;
+  top: 12mm;
 }
 
 #pageNumber {
@@ -38,7 +47,7 @@ p {
   right: 0mm;
   padding-top: 1mm;
   z-index: -1;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: bold;
   margin-top: 4mm;
   margin-right: 4mm;
@@ -60,19 +69,19 @@ p {
 }
 
 .topRight {
-  position: absolute;
-  top: 0;
-  right: 0mm;
-  padding-top: 12mm;
-  z-index: -1;
-  border: none;
+  /* border: #000 solid 1px; */
+  position: relative;
+  vertical-align: bottom;
+  top: 6mm;
+  margin-left: 3mm;
+  padding: 0;
+  height: 25mm;
 }
 
 #docInfo td {
-  border: none;
-  padding: 0.2mm; /* Optional, adjust as needed */
+  padding: 0mm;
   vertical-align: middle;
-  width: 25mm;
+  font-size: 12px;
 }
 
 #paymentTable th {
@@ -94,10 +103,10 @@ p {
   padding-top: 0;
   display: flex;
 }
-
+/* 
 .first-section {
   padding-top: 2mm;
-}
+} */
 
 .second-section {
   padding-top: 0;
@@ -113,8 +122,10 @@ p {
 }
 
 #companyLogo {
-  width: 15%;
-  display: flex;
+  margin-left: 2mm;
+  height: 30mm;
+  max-width: 40mm;
+  /* border: #000 solid 1px; */
 }
 
 #signature {
@@ -133,27 +144,36 @@ p {
   display: fixed;
 }
 
-.c1 {
+#c1 {
   background-color: #d0d4ec;
-  width: 68%;
+  border-top: 1px solid #000;
   border-left: 1px solid #000;
   border-bottom: 1px solid #000;
   border-right: 1px solid #000;
 }
 
-.c2 {
+#c2 {
   background-color: #d0d4ec;
-  width: 20%;
   text-align: right;
+  border-top: 1px solid #000;
   border-bottom: 1px solid #000;
   border-right: 1px solid #000;
 }
-.c3 {
+
+#c2 p {
+  font-size: 11px;
+}
+
+#c3 {
   background-color: #d0d4ec;
-  width: 12%;
   text-align: right;
+  border-top: 1px solid #000;
   border-bottom: 1px solid #000;
   border-right: 1px solid #000;
+}
+
+#c3 p {
+  font-size: 11px;
 }
 
 .left,
@@ -170,22 +190,18 @@ table {
   margin-bottom: 0px;
 }
 
-table th,
-table td {
-  border: 1px solid #000;
-  padding: 8px;
+[id^='itemTable-'] th {
   font-size: 10px;
-}
-
-table th {
+  font-weight: bold;
+  border: 1px solid #000;
   background-color: #e0dcdc;
-}
-
-thead th {
+  padding: 8px;
   text-align: center;
 }
 
-#itemTable td {
+[id^='itemTable-'] td {
+  font-size: 11px;
+  border: 1px solid #000;
   padding-left: 1.5mm;
   padding-right: 1.5mm;
   padding-top: 0mm;
@@ -195,31 +211,83 @@ thead th {
   background-color: #ffffff;
 }
 
+/* NOTE: EXperimenting */
 #productDescription {
-  font-size: 8px;
+  font-size: 11px; /* 8px */
   padding-bottom: 0mm;
   padding-top: 0mm;
   /* width: 20%; */
   /* word-wrap: break-word; */
 }
+
+#signatureTable {
+  position: absolute;
+  margin: 4mm;
+  margin-bottom: 6mm;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: 1px solid #000;
+  justify-content: center;
+  z-index: -1;
+}
+
+#createdPerson {
+  font-size: 10px;
+  position: absolute;
+  text-align: center;
+  z-index: -1;
+  bottom: 15mm;
+  left: 2mm;
+  /* border: #000 solid 1px; */
+  width: 39mm;
+}
+
+#createdPersonDate {
+  font-size: 10px;
+  position: absolute;
+  text-align: center;
+  z-index: -1;
+  bottom: 7mm;
+  left: 12mm;
+  width: 35mm;
+}
+
+#approvalPerson {
+  font-size: 10px;
+  position: absolute;
+  text-align: center;
+  z-index: -1;
+  bottom: 15mm;
+  left: 42.2mm;
+  /* border: #000 solid 1px; */
+  width: 39mm;
+}
+
+#approvalPersonDate {
+  font-size: 10px;
+  position: absolute;
+  text-align: center;
+  z-index: -1;
+  bottom: 7mm;
+  left: 53mm;
+  width: 35mm;
+}
+
 /* ------------------------------------*/
 
 #total {
   background-color: #e0dcdc;
-  width: 99.8%;
+  width: 99.3%;
   text-align: right;
   border-left: 1px solid #000;
   border-bottom: 1px solid #000;
   border-right: 1px solid #000;
   margin: 0;
-  margin-bottom: 3mm;
+  margin-bottom: 0;
   padding-top: 1.5mm;
   padding-bottom: 1.5mm;
   font-weight: bold;
-}
-
-#remark {
-  font-size: 10px;
 }
 
 hr {
@@ -243,6 +311,10 @@ body {
 /* NOTE: if not use, delete. */
 .answer {
   opacity: 1;
+}
+
+.topic {
+  font-weight: bold;
 }
 
 #payment {

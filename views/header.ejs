@@ -1,0 +1,15 @@
+<% const docNameThai = { 'QT': 'ใบเสนอราคา', 'IV': 'ใบแจ้งหนี้', 'BN': 'ใบวางบิล', 'RC':
+'ใบเสร็จรับเงิน', 'CN': 'ใบลดหนี้', 'DN': 'ใบเพิ่มหนี้' } %>
+<!---->
+<% const docNameEnglish = { 'QT': 'Quotation', 'IV': 'Invoice', 'BN': 'Billing Note', 'RC':
+'Receipt', 'CN': 'Credit Note', 'DN': 'Debit Note' } %>
+
+<div id="docName">
+  <!-- REVIEW: มาลบด้วย แค่เทสความยาว -->
+  <!-- <p style="font-size: 25px; font-weight: bold">ใบส่งสินค้า/ ใบแจ้งหนี้/ ใบกำกับภาษี</p> -->
+  <p style="font-size: 25px; font-weight: bold"><%= docNameThai[data.docType] %></p>
+  <p style="font-size: 16px; margin-top: 3mm; font-weight: bold">
+    <%= docNameEnglish[data.docType] %>
+  </p>
+</div>
+<p class="blueBox"></p>

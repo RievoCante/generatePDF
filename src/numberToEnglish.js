@@ -65,10 +65,7 @@ function numberToEnglish(amount) {
   let result = `${spellNumber(parseInt(integerPart, 10))} baht`;
 
   if (decimalPart !== '00') {
-    const trimmedDecimalPart = decimalPart.replace(/0+$/, ''); // Remove trailing zeros
-    if (trimmedDecimalPart !== '') {
-      result += ` and ${spellNumber(parseInt(trimmedDecimalPart, 10))} satang`;
-    }
+    result += ` and ${spellNumber(parseInt(decimalPart, 10))} satang`;
   }
 
   return result;

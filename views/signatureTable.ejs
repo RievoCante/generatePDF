@@ -1,0 +1,52 @@
+<div id="signatureTable" class="flex">
+  <div style="width: 20%; text-align: center; border-right: 1px solid #000">
+    <p style="padding-top: 1mm">สร้างโดย / Created by</p>
+    <img
+      id="signature"
+      src="data:image/png;base64,<%= base64CreatedBySignature %>"
+      alt="Created By Signature"
+    />
+    <p style="opacity: 0.2">_______________________<br /><br /></p>
+    <p>(______________________)<br /><br /></p>
+    <p>วันที่ / Date _____________</p>
+  </div>
+
+  <div style="width: 20%; text-align: center; border-right: 1px solid #000">
+    <p style="padding-top: 1mm">อนุมัติโดย / Approved by</p>
+    <img id="signature" src="data:image/png;base64,<%= base64Signature %>" alt="User Signature" />
+    <p style="opacity: 0.2">_______________________<br /><br /></p>
+    <p>(______________________)<br /><br /></p>
+    <p style="padding-bottom: 1mm">วันที่ / Date _____________</p>
+  </div>
+
+  <div style="width: 20%; text-align: center; border-right: 1px solid #000">
+    <p style="padding-top: 1mm">ตราประทับบริษัท</p>
+    <img id="eStamp" src="data:image/png;base64,<%= base64eStamp %>" alt="eStamp" />
+  </div>
+
+  <% const docName = { 'QT': 'ใบเสนอราคา', 'IV': 'ใบแจ้งหนี้', 'BN': 'ใบวางบิล', 'RC':
+  'ใบเสร็จรับเงิน', 'CN': 'ใบลดหนี้', 'DN': 'ใบเพิ่มหนี้' } %>
+
+  <div style="width: 20%; text-align: center; border-right: 1px solid #000">
+    <p style="padding-top: 1mm">ยอมรับ<%= docName[data.docType] %></p>
+  </div>
+
+  <div style="width: 20%; text-align: center">
+    <p style="padding-top: 1mm; margin-bottom: 16mm">
+      ยอมรับ<%= docName[data.docType] %> /<br />Accepted by
+    </p>
+    <p style="opacity: 0.2">_______________________<br /><br /></p>
+    <p>(______________________)<br /><br /></p>
+    <p style="padding-bottom: 1mm">วันที่ / Date _____________</p>
+  </div>
+</div>
+
+<p id="createdPerson"><%= data.createdPerson %></p>
+<p id="createdPersonDate">
+  <%= data.yearType === 1 ? data.issuedDate : dayjs(data.issuedDate).format('DD-MM-BBBB') %>
+</p>
+
+<p id="approvalPerson"><%= data.approvalPerson %></p>
+<p id="approvalPersonDate">
+  <%= data.yearType === 1 ? data.approvedDate : dayjs(data.approvedDate).format('DD-MM-BBBB') %>
+</p>

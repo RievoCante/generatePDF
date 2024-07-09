@@ -1,0 +1,38 @@
+<div class="second-section">
+  <div>
+    <p>
+      <span class="topic">ลูกค้า/Customer:</span>
+      <span class="answer" id="customerName"><%= data.createdPerson %></span>
+    </p>
+    <p style="word-wrap: normal">
+      <span class="topic">ที่อยู่/Address:</span>
+      <% fixedContactAddress.forEach(item => { %>
+      <span class="answer" id="contactAddress"><%= item %></span><br />
+      <% }); %>
+    </p>
+  </div>
+
+  <div style="display: flex">
+    <div class="left">
+      <p>
+        <span class="topic">เลขผู้เสียภาษี/Tax ID:</span>
+        <span class="answer"><%= data.contactTaxId %></span>
+      </p>
+      <p>
+        <span class="topic">ผู้ติดต่อ/Attention:</span>
+        <span class="answer" id="attention"><%= data.contactPerson %></span>
+      </p>
+    </div>
+
+    <div class="right">
+      <p>
+        <span class="topic">เบอร์โทรศัพท์/Tel. :</span>
+        <span class="answer"><%= data.telephone %></span>
+      </p>
+      <p>
+        <span class="topic">E-mail:</span>
+        <span class="answer"><%= data.email %></span>
+      </p>
+    </div>
+  </div>
+</div>

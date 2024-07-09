@@ -16,350 +16,51 @@
       <% for(i=0; i<= additionalPages; i++){ %>
 
       <div id="invoice">
-        <h1 id="docName">ใบเสนอราคา<br />Quotation</h1>
+        <!-- HEADER -->
+        <%- include('./header.ejs') %>
+
+        <!-- PAGE NUMBER -->
         <p id="pageNumber"><%= (i + 1) %> / <%= (additionalPages + 1) %></p>
 
-        <!------------------------------------------------------------------------->
+        <!-- TOP RIGHT -->
+        <%- include('./topRight.ejs') %>
 
-        <div class="topRight">
-          <table id="docInfo">
-            <tr>
-              <td>เลขที่/No.</td>
-              <td><%= data.taxIdent %></td>
-            </tr>
-            <tr>
-              <td>วันที่/Date.</td>
-              <td><%= data.issuedDate %></td>
-            </tr>
-            <tr>
-              <td>วันหมดอายุ/</td>
-              <td><%= data.dueDate %></td>
-            </tr>
-            <tr>
-              <td>Expired Date</td>
-            </tr>
-            <tr>
-              <td>อ้างอิง/Ref.</td>
-              <td><%= data.contactTaxId %></td>
-            </tr>
-          </table>
-        </div>
-
-        <!------------------------------ COMPANY LOGO --------------------------------->
-
-        <img
-          id="companyLogo"
-          src="data:image/png;base64,<%= base64CompanyLogo %>"
-          alt="Company Logo"
-        />
-
-        <!--------------------------------- COMPANY INFO --------------------------------->
-
-        <div class="first-section">
-          <div>
-            <p>
-              ชื่อบริษัท/Company Name:
-              <span class="answer" id="companyName"><%= data.contactName %></span>
-            </p>
-            <p>
-              ที่อยู่/Address:
-              <span class="answer" id="companyAddress"><%= data.contactAddress %></span>
-            </p>
-          </div>
-
-          <div style="display: flex">
-            <div class="left">
-              <p>
-                เลขผู้เสียภาษี/Tax ID:
-                <span class="answer"><%= data.contactTaxId %></span>
-              </p>
-              <p>
-                เบอร์โทรศัพท์/Tel:
-                <span class="answer"><%= data.contactMobile %></span>
-              </p>
-            </div>
-
-            <div class="right">
-              <p>
-                สาขา/Branch:
-                <span class="answer"><%= data.branchName %></span>
-              </p>
-              <p>
-                อีเมล/E-mail:
-                <span class="answer"><%= data.contactEmail %></span>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-------------------------------- CUSTOMER INFO ------------------------------------>
+        <!-- COMPANY INFO -->
+        <%- include('./companyInfo.ejs') %>
         <hr />
 
-        <div class="second-section">
-          <div>
-            <p>
-              ลูกค้า/Customer:
-              <span class="answer" id="customerName"><%= data.createdPerson %></span>
-            </p>
-            <p style="word-wrap: normal">
-              ที่อยู่/Address:
-              <span class="answer" id="customerAddress"><%= data.companyAddress %></span>
-            </p>
-          </div>
+        <!-- CUSTOMER INFO -->
+        <%- include('./customerInfo.ejs') %>
 
-          <div style="display: flex">
-            <div class="left">
-              <p>
-                เลขผู้เสียภาษี/Tax ID:
-                <span class="answer"><%= data.contactTaxId %></span>
-              </p>
-              <p>
-                ผู้ติดต่อ/Attention:
-                <span class="answer" id="attention"><%= data.createdPerson %></span>
-              </p>
-            </div>
+        <!-- NOTE: working on ITEM TABLE -->
+        <% if (data.docType === 'BN') { %> <%- include('./itemTableBN.ejs') %> <% } %>
+        <!-- -->
+        <% if (data.docType !== 'BN') { %> <%- include('./itemTable.ejs') %> <% } %>
 
-            <div class="right">
-              <p>
-                เบอร์โทรศัพท์/Tel. :
-                <span class="answer"><%= data.telephone %></span>
-              </p>
-              <p>
-                E-mail:
-                <span class="answer"><%= data.email %></span>
-              </p>
-            </div>
-          </div>
-        </div>
+        <!-- REMARK -->
+        <% if (i === additionalPages) { %> <%- include('./remark.ejs') %>
 
-        <!---------------------------- ITEM TABLE ------------------------------->
-
-        <!---------------------- แยกรายการ ------------------------->
-        <% if (!data.selectedTableType) { %>
-        <div class="third-section">
-          <table id="itemTable">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>รหัส<br />ID No.</th>
-                <th>รายการสินค้า<br />Product</th>
-                <th>จำนวน<br />Quantity</th>
-                <th>ราคา<br />ต่อหน่วย<br />Unit Price</th>
-                <th>ส่วนลด<br />Discount</th>
-                <th>ภาษี<br />VAT</th>
-                <th>หัก ณ ที่จ่าย<br />WithholdingTax</th>
-                <th>มูลค่าก่อนภาษี<br />Pre-Tax Amount</th>
-              </tr>
-            </thead>
-
-            <% data.documentItems.slice(i*7, (i + 1)*7).forEach((item, index) => { %> <% const
-            productDescription = reorganizeText.reorganizeItemDescription(item.productDescription);
-            %>
-            <tbody>
-              <tr>
-                <td class="answer" style="max-width: 5mm; text-align: center">
-                  <%= (i*7) + index +1 %>
-                </td>
-                <td class="answer" style="max-width: 14mm; text-align: left">
-                  <%= item.productCode %>
-                </td>
-                <td class="answer" style="max-width: 90mm; text-align: left">
-                  <%= item.productName %><br />
-                  <!--  -->
-                  <% productDescription.forEach(item => { %>
-                  <span id="productDescription"><%= item %></span><br />
-                  <% }); %>
-                  <!--  -->
-                </td>
-                <td class="answer" style="max-width: 20mm; text-align: right">
-                  <%= item.quantity %>
-                </td>
-                <td class="answer" style="max-width: 20mm; text-align: right">
-                  <%= helper.formatNumber(item.unitPrice) %>
-                </td>
-                <td class="answer" style="max-width: 9mm; text-align: right">
-                  <%= helper.formatNumber(item.discount) %>
-                </td>
-                <td class="answer" style="max-width: 9mm; text-align: right">
-                  <%= item.selected_vat %>%
-                </td>
-                <td class="answer" style="max-width: 8mm; text-align: right">
-                  <%= helper.convertToPercent(item.selected_paytax) %>
-                </td>
-                <td class="answer" style="max-width: 8mm; text-align: right">
-                  <%= helper.formatNumber(item.totalPriceBeforeTax) %>
-                </td>
-              </tr>
-            </tbody>
-            <% }); %>
-          </table>
-        </div>
-        <% };%>
-
-        <!------------------------- รวมท้ายบิล -------------------------->
-
-        <% if (data.selectedTableType) { %>
-        <div class="third-section">
-          <table id="itemTable">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>รหัส<br />ID No.</th>
-                <th>รายการสินค้า<br />Product</th>
-                <th>จำนวน<br />Quantity</th>
-                <th>ราคา<br />ต่อหน่วย<br />Unit Price</th>
-                <th>มูลค่าก่อนภาษี<br />Pre-Tax Amount</th>
-              </tr>
-            </thead>
-
-            <% data.documentItems.slice(i*7, (i + 1)*7).forEach((item, index) => { %><% const
-            productDescription = reorganizeText.reorganizeItemDescription(item.productDescription,
-            100); %>
-            <tbody>
-              <tr>
-                <td class="answer" style="max-width: 5mm; text-align: center">
-                  <%= (i*7) + index +1 %>
-                </td>
-                <td class="answer" style="max-width: 14mm; text-align: left">
-                  <%= item.productCode %>
-                </td>
-                <td class="answer" style="max-width: 90mm; text-align: left">
-                  <%= item.productName %><br />
-                  <!--  -->
-                  <% productDescription.forEach(item => { %>
-                  <span id="productDescription"><%= item %></span><br />
-                  <% }); %>
-                  <!--  -->
-                </td>
-                <td class="answer" style="max-width: 20mm; text-align: right">
-                  <%= item.quantity %>
-                </td>
-                <td class="answer" style="max-width: 20mm; text-align: right">
-                  <%= helper.formatNumber(item.unitPrice) %>
-                </td>
-                <td class="answer" style="max-width: 8mm; text-align: right">
-                  <%= helper.formatNumber(item.totalPriceBeforeTax) %>
-                </td>
-              </tr>
-            </tbody>
-            <% }); %>
-          </table>
-        </div>
-        <% };%>
-        <!------------------------------ REMARK ------------------------------->
-
-        <div id="remark" class="flex">
-          <div class="c1">
-            <p style="font-size: 13px; padding: 1.5mm; font-weight: bold">หมายเหตุ / Remark:</p>
-            <% fixedRemark.forEach(item => { %>
-            <p style="font-size: 10px; padding-left: 1.5mm; padding-right: 1.5mm"><%= item %></p>
-            <% }); %>
-          </div>
-
-          <div class="c2">
-            <p style="padding-top: 3px">ส่วนลด / Discount</p>
-            <p>มูลค่ารวมก่อนเสียภาษี /<br />Pre-Tax Amount</p>
-            <p>ภาษีมูลค่าเพิ่ม / VAT</p>
-            <p>จำนวนเงินรวมทั้งสิ้น / Total</p>
-            <p>หัก ณ ที่จ่าย / Withholding Tax</p>
-            <p>จำนวนเงินสุทธิ / Grand Total</p>
-            <p>&emsp;</p>
-            <p>&emsp;</p>
-            <p>&emsp;</p>
-            <p>&emsp;</p>
-          </div>
-
-          <div class="c3">
-            <p style="padding-top: 3px"><%= helper.formatNumber(data.discountAmount) %></p>
-            <p><%= helper.formatNumber(data.netTaxablePrice) %></p>
-            <p>&nbsp;</p>
-            <p><%= helper.formatNumber(data.vatAmount) %></p>
-            <!-- REVIEW: can't find this variable (จำนวนเงินรวมทั้งสิ้น) -->
-            <p><%= helper.formatNumber(data.grandTotal) %></p>
-            <p><%= helper.formatNumber(data.withholdingTaxAmount) %></p>
-            <p><%= helper.formatNumber(data.grandTotal) %></p>
-          </div>
-        </div>
-
+        <!-- TOTAL -->
         <p id="total">
           - จำนวนเงินสุทธิ <%= thaiBath.arabicNumberToText(helper.formatNumber(data.grandTotal)) %>
           -&emsp;<br />
           - <%= numberToEnglish(helper.formatNumber(data.grandTotal)) %> -&emsp;
         </p>
 
-        <!-- REVIEW: ไม่รู้เอาแบบไหน -->
-        <!-- <div class="flex">
-          <div style="width: 50%">
-            <p id="payment">ช่องทางการชำระเงิน / Payment</p>
-            <table id="paymentTable">
-              <thead>
-                <tr>
-                  <th>ช่องทางการชำระเงิน</th>
-                  <th>ชื่อการชำระเงิน</th>
-                  <th>รายละเอียด</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>[PLACEHOLDER]</td>
-                  <td>[PLACEHOLDER PLACEHOLDER]</td>
-                  <td>[PLACEHOLDER]</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div> -->
-        <span id="payment">เงื่อนไขการชำระเงิน / Payment Condition: </span>
-        <span style="font-size: 10px"><%=data.paymentCondition %></span>
+        <!-- PAYMENT CONDITION -->
+        <span id="payment">เงื่อนไขการชำระเงิน / Payment Condition: </span><br />
+        <% fixedPaymentCondition.forEach(item => { %>
+        <p style="font-size: 10px; margin-left: 2mm; padding-bottom: 0"><%= item %></p>
+        <% }); %>
 
-        <!------------------------------------------------------------------------->
+        <!-- SIGNATURE -->
+        <%- include('./signatureTable.ejs') %>
 
-        <div class="flex" style="border: 1px solid #000; margin: 1mm">
-          <div
-            style="width: 20%; text-align: center; border-right: 1px solid #000; padding-top: 1mm"
-          >
-            <p>สร้างโดย / Created by</p>
-            <img
-              id="signature"
-              src="data:image/png;base64,<%= base64CreatedBySignature %>"
-              alt="Created By Signature"
-            />
-            <p style="opacity: 0.2">___________________________<br /><br /></p>
-            <p>(__________________________)<br /><br /></p>
-            <p>วันที่ / Date _________________</p>
-          </div>
-
-          <div style="width: 20%; text-align: center; border-right: 1px solid #000">
-            <p style="padding-top: 1mm">อนุมัติโดย / Approved by</p>
-            <img
-              id="signature"
-              src="data:image/png;base64,<%= base64Signature %>"
-              alt="User Signature"
-            />
-            <p style="opacity: 0.2">___________________________<br /><br /></p>
-            <p>(__________________________)<br /><br /></p>
-            <p style="padding-bottom: 1mm">วันที่ / Date _________________</p>
-          </div>
-
-          <div style="width: 20%; text-align: center; border-right: 1px solid #000">
-            <p style="padding-top: 1mm">ตราประทับบริษัท</p>
-            <img id="eStamp" src="data:image/png;base64,<%= base64eStamp %>" alt="eStamp" />
-          </div>
-
-          <div style="width: 20%; text-align: center; border-right: 1px solid #000">
-            <p style="padding-top: 1mm">ยอมรับใบเสนอราคา</p>
-          </div>
-
-          <div style="width: 20%; text-align: center">
-            <p style="padding-top: 1mm; margin-bottom: 16mm">ยอมรับใบเสนอราคา /<br />Accepted by</p>
-            <p style="opacity: 0.2">___________________________<br /><br /></p>
-            <p>(__________________________)<br /><br /></p>
-            <p style="padding-bottom: 1mm">วันที่ / Date _________________</p>
-          </div>
-        </div>
+        <!---->
+        <% }; %>
       </div>
-      <% } %>
-      <!------------------------------------------------------------------------------------>
+
+      <% };%>
     </div>
     <script src="script.js"></script>
   </body>

@@ -1,0 +1,38 @@
+<!-- แยกรายการ -->
+<!-- NOTE: ignore error? เพราะทำงานปกติ -->
+<div id="remark" class="flex">
+  <% const widthValue1 = data.selectedTableType === 0 ? '55.9%' : '63.1%' %>
+  <div id="c1" style="width: <%= widthValue1 %>; height: 32mm">
+    <p style="font-size: 12px; padding-top: 1.5mm; padding-left: 1.5mm; font-weight: bold">
+      หมายเหตุ / Remark:
+    </p>
+    <% fixedRemark.forEach(item => { %>
+    <p style="font-size: 11px; padding-left: 1.5mm; padding-right: 1.5mm; padding-bottom: 0">
+      <%= item %>
+    </p>
+    <% }); %>
+  </div>
+
+  <% const widthValue2 = data.selectedTableType === 0 ? '23.7%' : '22.3%' %>
+  <div id="c2" style="width: <%= widthValue2 %>">
+    <p style="padding-top: 3px">ส่วนลด / Discount</p>
+    <p>มูลค่ารวมก่อนเสียภาษี /</p>
+    <p>Pre-Tax Amount</p>
+    <p>ภาษีมูลค่าเพิ่ม / VAT</p>
+    <p>จำนวนเงินรวมทั้งสิ้น / Total</p>
+    <p>หัก ณ ที่จ่าย / Withholding Tax</p>
+    <p>จำนวนเงินสุทธิ / Grand Total</p>
+  </div>
+
+  <% const widthValue3 = data.selectedTableType === 0 ? '20.4%' : '14.6%' %>
+  <div id="c3" style="width: <%= widthValue3 %>">
+    <p style="padding-top: 3px"><%= helper.formatNumber(data.discountAmount) %></p>
+    <p><%= helper.formatNumber(data.netTaxablePrice) %></p>
+    <p>&emsp;</p>
+    <p><%= helper.formatNumber(data.vatAmount) %></p>
+    <!-- REVIEW: can't find this variable (จำนวนเงินรวมทั้งสิ้น) -->
+    <p><%= helper.formatNumber(data.grandTotal) %></p>
+    <p><%= helper.formatNumber(data.withholdingTaxAmount) %></p>
+    <p><%= helper.formatNumber(data.grandTotal) %></p>
+  </div>
+</div>

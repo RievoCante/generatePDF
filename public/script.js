@@ -6,11 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
       .set({
         filename: 'quotation.pdf',
         margin: 0,
-        image: { type: 'jpg', quality: 0.95 },
-        html2canvas: { scale: 1.7, letterRendering: true },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        image: { type: 'png', quality: 0.95 },
+        html2canvas: { scale: 1.3 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true, compressPdf: true },
       })
       .from(pdfContent)
       .save();
   });
 });
+
+// document.addEventListener('DOMContentLoaded', function () {
+//   const table = document.getElementById('your-table-id');
+//   const height = table.offsetHeight;
+//   console.log('Table height:', height);
+// });

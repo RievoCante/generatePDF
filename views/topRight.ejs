@@ -1,0 +1,36 @@
+<div style="display: flex">
+  <div>
+    <img id="companyLogo" src="data:image/png;base64,<%= base64CompanyLogo %>" alt="Company Logo" />
+  </div>
+
+  <div class="topRight">
+    <table id="docInfo">
+      <tbody>
+        <tr>
+          <td style="font-weight: bold; width: 19mm">เลขที่/No.</td>
+          <td style="width: 50mm"><%= data.taxIdent %></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; width: 19mm">วันที่/Date.</td>
+          <td style="width: 50mm">
+            <%= data.yearType === 1 ? data.issuedDate : dayjs(data.issuedDate).format('DD-MM-BBBB')
+            %>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; width: 19mm">ครบกำหนด/</td>
+          <td style="width: 50mm">
+            <%= data.yearType === 1 ? data.dueDate : dayjs(data.dueDate).format('DD-MM-BBBB') %>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; width: 19mm">Valid</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; width: 19mm">อ้างอิง/Ref.</td>
+          <td style="width: 50mm"><%= data.contactTaxId %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

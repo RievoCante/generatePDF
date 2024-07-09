@@ -1,0 +1,43 @@
+<div class="third-section">
+  <table id="itemTable-<%= i %>">
+    <% const maxRow = 10; const maxWord = 30; %>
+    <!-- if จำนวน item ลงท้ายด้วย 7 8 9 0 -> ไม่มี header หน้าสุดท้าย -->
+    <% const lastDigit = String(data.documentItems.length).slice(-1); %>
+    <!---->
+    <% if (!['7', '8', '9', '0'].includes(lastDigit) || i !== additionalPages) { %>
+    <!---->
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>เลขที่ใบแจ้งหนี้<br />Invoice No.</th>
+        <th>วันที่เอกสาร<br />Issue</th>
+        <th>วันที่<br />ครบกำหนด<br />Valid</th>
+        <th>ราคาสุทธิที่เสียภาษี<br />TaxableNetPrice</th>
+        <th>ราคาสุทธิที่ยกเว้นภาษี<br />TaxExemptNetPrice</th>
+        <th>ภาษี<br />VAT</th>
+        <th>หัก ณ ที่จ่าย<br />Withholding Tax</th>
+        <th>ราคารวม<br />Total</th>
+      </tr>
+    </thead>
+    <% } %>
+
+    <!------------------------------------------------------------------------>
+
+    <% data.documentItems.slice(i*maxRow, (i + 1)*maxRow).forEach((item, index) => { %> <% const
+    productDescription = reorganizeText(item.productDescription, maxWord ); %>
+    <tbody>
+      <tr>
+        <td class="answer" style="width: 5%; text-align: center"><%= (i*maxRow) + index +1 %></td>
+        <td class="answer" style="width: 30%; text-align: left"><%= data.vatPrice %></td>
+        <td class="answer" style="width: 10%; text-align: left"><%= data.vatPrice %></td>
+        <td class="answer" style="width: 10%; text-align: right"><%= data.vatPrice %></td>
+        <td class="answer" style="width: 11%; text-align: right"><%= data.vatPrice %></td>
+        <td class="answer" style="width: 11%; text-align: right"><%= data.vatPrice %></td>
+        <td class="answer" style="width: 6%; text-align: right"><%= data.vatPrice %></td>
+        <td class="answer" style="width: 6%; text-align: right"><%= data.vatPrice %></td>
+        <td class="answer" style="width: 11%; text-align: right"><%= data.vatPrice %></td>
+      </tr>
+    </tbody>
+    <% }); %>
+  </table>
+</div>
