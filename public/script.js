@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .set({
         filename: 'quotation.pdf',
         margin: 0,
-        image: { type: 'png', quality: 0.95 },
+        image: { type: 'png' },
         html2canvas: { scale: 1.3 },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true, compressPdf: true },
       })

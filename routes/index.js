@@ -39,7 +39,7 @@ router.get('/', async (req, res) => {
       reorganizeText(data.contactAddress, 100),
     ]);
 
-    res.render('quotation.ejs', {
+    res.render('main.ejs', {
       data,
       additionalPages,
       base64CompanyLogo,
