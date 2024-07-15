@@ -1,11 +1,15 @@
 <div id="signatureTable" class="flex">
   <div style="width: 20%; text-align: center; border-right: 1px solid #000">
     <p style="padding-top: 1mm">สร้างโดย / Created by</p>
-    <img
-      id="signature"
-      src="data:image/png;base64,<%= base64CreatedBySignature %>"
-      alt="Created By Signature"
-    />
+    <div id="createdContainer">
+      <% if (data.createdBySignature) { %>
+      <img
+        id="createdBySignature"
+        src="data:image/png;base64,<%= base64CreatedBySignature %>"
+        alt="Created By Signature"
+      />
+      <% } %>
+    </div>
     <p style="opacity: 0.2">_______________________<br /><br /></p>
     <p>(______________________)<br /><br /></p>
     <p>วันที่ / Date _____________</p>
@@ -13,7 +17,15 @@
 
   <div style="width: 20%; text-align: center; border-right: 1px solid #000">
     <p style="padding-top: 1mm">อนุมัติโดย / Approved by</p>
-    <img id="signature" src="data:image/png;base64,<%= base64Signature %>" alt="User Signature" />
+    <div id="approvedContainer">
+      <% if (data.userSignature) { %>
+      <img
+        id="approvedBySignature"
+        src="data:image/png;base64,<%= base64Signature %>"
+        alt="User Signature"
+      />
+      <% } %>
+    </div>
     <p style="opacity: 0.2">_______________________<br /><br /></p>
     <p>(______________________)<br /><br /></p>
     <p style="padding-bottom: 1mm">วันที่ / Date _____________</p>

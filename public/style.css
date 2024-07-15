@@ -121,19 +121,51 @@ p {
   display: flex;
 }
 
-#companyLogo {
-  margin-left: 2mm;
+#companyLogoContainer {
+  border: #000 1px solid;
   height: 30mm;
-  max-width: 40mm;
-  /* border: #000 solid 1px; */
+  width: 30mm;
+  align-items: center;
+  justify-content: center;
+  line-height: 30mm;
 }
 
-#signature {
-  margin-top: 4mm;
-  margin-bottom: 0mm;
+#companyLogo {
+  max-height: 30mm;
+  vertical-align: middle;
+  width: 30mm;
+}
+
+#approvedContainer {
+  width: 40mm;
+  height: 19mm;
+  /* border: #000 1px solid; */
+  vertical-align: middle;
+  line-height: 17mm;
+}
+
+#approvedBySignature {
   width: auto;
   height: 13mm;
-  display: fixed;
+  /* border: #000 1px solid; */
+  vertical-align: middle;
+  text-align: center;
+}
+
+#createdContainer {
+  width: 40mm;
+  height: 19mm;
+  /* border: #000 1px solid; */
+  vertical-align: middle;
+  line-height: 17mm;
+}
+
+#createdBySignature {
+  width: auto;
+  height: 13mm;
+  /* border: #000 1px solid; */
+  vertical-align: middle;
+  text-align: center;
 }
 
 #eStamp {

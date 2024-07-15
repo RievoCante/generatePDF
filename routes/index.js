@@ -1,5 +1,6 @@
 const express = require('express');
 const dayjs = require('dayjs');
+const puppeteer = require('puppeteer');
 const buddhistEra = require('dayjs/plugin/buddhistEra');
 
 const data = require('../dataMock');
@@ -61,6 +62,55 @@ router.get('/', async (req, res) => {
   } catch (err) {
     console.error('Internal Server Error', err);
     res.status(500).send('Internal Server Error');
+  }
+});
+
+router.get('/pdfContent', (req, res) => {
+  res.render('test.ejs', { title: 'PDF Content', message: 'This is the PDF content' });
+});
+
+// Route to generate and download the PDF
+router.get('/download-pdf', async (req, res) => {
+  try {
+    console.log('Starting browser...');
+    const browser = await puppeteer.launch();
+    console.log('Browser started.');
+
+    console.log('Opening new page...');
+    const page = await browser.newPage();
+    console.log('New page opened.');
+
+    console.log('Navigating to PDF content page...');
+    await page.goto(`http://localhost:8000/pdfContent`, { waitUntil: 'networkidle0', timeout: 120000 });
+    console.log('Navigation completed.');
+
+    // Wait for a specific element to be visible
+    await page.waitForSelector('body', { visible: true, timeout: 60000 });
+    console.log('Content is fully loaded.');
+
+    console.log('Generating PDF...');
+    const pdf = await page.pdf({
+      path: 'quotation.pdf',
+      format: 'A4',
+      printBackground: true,
+      margin: { top: 0, right: 0, bottom: 0, left: 0 },
+      timeout: 60000,
+    });
+    console.log('PDF generated.');
+
+    await browser.close();
+    console.log('Browser closed.');
+
+    // Send the PDF as a response
+    res.set({
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': 'attachment; filename="quotation.pdf"',
+    });
+    res.send(pdf);
+    console.log('PDF sent.');
+  } catch (error) {
+    console.error('Error generating PDF:', error);
+    res.status(500).send('Error generating PDF');
   }
 });
 

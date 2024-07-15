@@ -1,6 +1,8 @@
 <div style="display: flex">
-  <div>
+  <div id="companyLogoContainer">
+    <% if (data.companyLogo){ %>
     <img id="companyLogo" src="data:image/png;base64,<%= base64CompanyLogo %>" alt="Company Logo" />
+    <% } %>
   </div>
 
   <div class="topRight">

@@ -27,6 +27,8 @@ function formatNumber(value) {
   return value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
+async function loadData() {}
+
 module.exports = {
   formatDateToDDMMYYHHMMSS,
   formatBuddhistDate,

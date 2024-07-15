@@ -14,9 +14,3 @@ document.addEventListener('DOMContentLoaded', () => {
       .save();
   });
 });
-
-// document.addEventListener('DOMContentLoaded', function () {
-//   const table = document.getElementById('your-table-id');
-//   const height = table.offsetHeight;
-//   console.log('Table height:', height);
-// });
